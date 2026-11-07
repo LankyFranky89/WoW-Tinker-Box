@@ -223,6 +223,63 @@ public partial class MainWindow : Window
         catch (Exception ex) { Status("Error: " + ex.Message); }
     }
 
+    void SelectAll_Click(object? sender, RoutedEventArgs e)
+    {
+        bool on = SelectAllBox.IsChecked == true;
+        foreach (var a in shown) a.Selected = on;
+    }
+
+    async void ZipSelected_Click(object? sender, RoutedEventArgs e) =>
+        await ExportZip(all.Where(a => a.Selected).ToList(), "my-addons.zip");
+
+    async void ZipAll_Click(object? sender, RoutedEventArgs e) =>
+        await ExportZip(all, "all-addons.zip");
+
+    async Task ExportZip(List<Addon> addons, string suggested)
+    {
+        if (addons.Count == 0) { Status("Tick the addons you want to zip first."); return; }
+        var file = await StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
+        {
+            Title = "Save addons as zip",
+            SuggestedFileName = suggested,
+            DefaultExtension = "zip",
+            FileTypeChoices = new[] { new FilePickerFileType("Zip file") { Patterns = new[] { "*.zip" } } },
+        });
+        var path = file?.TryGetLocalPath();
+        if (path == null) return;
+        await Run(async () =>
+        {
+            Status($"Zipping {addons.Count} addon(s)…");
+            await Task.Run(() => Packs.ExportZip(st, addons, path));
+            Status($"Saved {addons.Count} addon(s) to {Path.GetFileName(path)}. Send it to your friend; he uses Install from zip.");
+        });
+    }
+
+    async void InstallZip_Click(object? sender, RoutedEventArgs e)
+    {
+        if (!HasGameFolder()) return;
+        var files = await StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions
+        {
+            Title = "Pick an addon zip",
+            AllowMultiple = true,
+            FileTypeFilter = new[] { new FilePickerFileType("Zip file") { Patterns = new[] { "*.zip" } } },
+        });
+        var paths = files.Select(f => f.TryGetLocalPath()).Where(p => p != null).Select(p => p!).ToList();
+        if (paths.Count == 0) return;
+        await Run(async () =>
+        {
+            await BackupBeforeUpdate();
+            var names = new List<string>();
+            foreach (var p in paths)
+            {
+                Status($"Installing {Path.GetFileName(p)}…");
+                names.AddRange(await Task.Run(() => Installer.InstallLocalZip(st, p)));
+            }
+            Rescan();
+            Status($"Installed {names.Count} addon(s): {string.Join(", ", names)}");
+        });
+    }
+
     // ---------- install page ----------
 
     async void Install_Click(object? sender, RoutedEventArgs e)

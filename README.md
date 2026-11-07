@@ -7,6 +7,7 @@ A dark, Windows 11-style addon manager for **WoW Forever 1.60**. Runs on Windows
 - **Install from GitHub or WoWInterface**: paste `owner/repo`, a GitHub link or a WoWInterface link, or search WoWInterface by name. Picks the Forever zip from the latest release when there is one, or the newest commit if the repo has no releases.
 - **Updates**: checks all GitHub-installed addons at startup, with one-click update or "Update all".
 - **Auto-backup WTF**: zips your WTF folder before every update. Keeps the newest 10, restore with two clicks (current settings are backed up first).
+- **Zip your addons**: tick addons (or all) and save them as one zip. "Install from zip" installs those zips, or any addon zip you downloaded yourself. GitHub and WoWInterface addons keep updating after import.
 - **Addon packs**: share your whole addon list as a `WTB1:` code. Your friend pastes it to install the same set.
 - **Patch-day checker**: notices when the game build changes (from `.build.info`) and tells you which addons have fixes or may break.
 - CurseForge and Wago keys can be saved in Settings; those sources are planned for a later version.

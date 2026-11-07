@@ -88,6 +88,13 @@ public class Addon : INotifyPropertyChanged
     public string? Repo { get; set; }
     public string? InstalledTag { get; set; }
 
+    bool _selected;
+    public bool Selected
+    {
+        get => _selected;
+        set { _selected = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Selected))); }
+    }
+
     string? _latest;
     public string? LatestTag
     {
@@ -383,13 +390,38 @@ public static class Installer
     public static async Task<List<string>> Install(AppState st, string repo, Release rel)
     {
         var zip = await GitHub.Download(rel.Url).ConfigureAwait(false);
-        var tmp = Path.Combine(Path.GetTempPath(), "fam-" + Guid.NewGuid().ToString("N"));
+        try { return InstallZip(st, zip, _ => new SourceInfo { Repo = repo, Tag = rel.Tag }); }
+        finally { try { File.Delete(zip); } catch { } }
+    }
+
+    /// <summary>
+    /// Installs a zip picked by the user: either a WoW Tinker Box addon zip (with wtb-pack.json)
+    /// or a plain addon zip downloaded from any site.
+    /// </summary>
+    public static List<string> InstallLocalZip(AppState st, string zipPath)
+    {
+        Dictionary<string, SourceInfo>? manifest = null;
+        using (var z = ZipFile.OpenRead(zipPath))
+        {
+            var entry = z.GetEntry(Packs.ManifestName);
+            if (entry != null)
+            {
+                using var stream = entry.Open();
+                manifest = JsonSerializer.Deserialize<Dictionary<string, SourceInfo>>(stream);
+            }
+        }
+        return InstallZip(st, zipPath, name => manifest != null && manifest.TryGetValue(name, out var si) ? si : null);
+    }
+
+    static List<string> InstallZip(AppState st, string zipPath, Func<string, SourceInfo?> sourceFor)
+    {
+        var tmp = Path.Combine(Path.GetTempPath(), "wtb-" + Guid.NewGuid().ToString("N"));
         try
         {
-            ZipFile.ExtractToDirectory(zip, tmp);
+            ZipFile.ExtractToDirectory(zipPath, tmp);
             var found = new List<(string Dir, string Name)>();
             Find(tmp, found);
-            if (found.Count == 0) throw new Exception("No addon (.toc file) was found in the download.");
+            if (found.Count == 0) throw new Exception("No addon (.toc file) was found in the zip.");
 
             Directory.CreateDirectory(st.AddOnsPath);
             foreach (var (dir, name) in found)
@@ -397,14 +429,15 @@ public static class Installer
                 var target = Path.Combine(st.AddOnsPath, name);
                 if (Directory.Exists(target)) Directory.Delete(target, true);
                 CopyDir(dir, target);
-                st.Sources[name] = new SourceInfo { Repo = repo, Tag = rel.Tag };
+                var src = sourceFor(name);
+                if (src != null && !string.IsNullOrEmpty(src.Repo)) st.Sources[name] = src;
+                else st.Sources.Remove(name);
             }
             st.Save();
             return found.Select(f => f.Name).ToList();
         }
         finally
         {
-            try { File.Delete(zip); } catch { }
             try { Directory.Delete(tmp, true); } catch { }
         }
     }
@@ -516,6 +549,29 @@ public class Pack
 public static class Packs
 {
     const string Prefix = "WTB1:";
+    public const string ManifestName = "wtb-pack.json";
+
+    /// <summary>Zips the chosen addon folders plus a manifest so GitHub/WoWInterface addons keep updating.</summary>
+    public static void ExportZip(AppState st, IEnumerable<Addon> addons, string file)
+    {
+        if (File.Exists(file)) File.Delete(file);
+        var manifest = new Dictionary<string, SourceInfo>();
+        using var zip = ZipFile.Open(file, ZipArchiveMode.Create);
+        foreach (var a in addons)
+        {
+            var dir = Path.Combine(st.AddOnsPath, a.Folder);
+            if (!Directory.Exists(dir)) continue;
+            foreach (var f in Directory.GetFiles(dir, "*", SearchOption.AllDirectories))
+            {
+                var rel = a.Folder + "/" + Path.GetRelativePath(dir, f).Replace('\\', '/');
+                zip.CreateEntryFromFile(f, rel, CompressionLevel.Optimal);
+            }
+            if (st.Sources.TryGetValue(a.Folder, out var src)) manifest[a.Folder] = src;
+        }
+        var entry = zip.CreateEntry(ManifestName);
+        using var w = new StreamWriter(entry.Open());
+        w.Write(JsonSerializer.Serialize(manifest, new JsonSerializerOptions { WriteIndented = true }));
+    }
 
     public static string Export(string name, IEnumerable<Addon> addons)
     {
