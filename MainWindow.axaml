@@ -1,0 +1,245 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="WoWTinkerBox.MainWindow"
+        Title="WoW Tinker Box"
+        Icon="/Assets/icon.ico"
+        Width="1040" Height="680" MinWidth="780" MinHeight="500"
+        Background="#202020">
+
+  <Window.Styles>
+    <Style Selector="Button.gold">
+      <Setter Property="Background" Value="#E0B84C" />
+      <Setter Property="Foreground" Value="#1A1A1A" />
+    </Style>
+    <Style Selector="Button.gold:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="#EBC865" />
+      <Setter Property="Foreground" Value="#1A1A1A" />
+    </Style>
+    <Style Selector="Border.card">
+      <Setter Property="Background" Value="#272727" />
+      <Setter Property="BorderBrush" Value="#303030" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="CornerRadius" Value="6" />
+      <Setter Property="Padding" Value="10" />
+      <Setter Property="Margin" Value="0,0,0,4" />
+    </Style>
+    <Style Selector="TextBlock.sub">
+      <Setter Property="Foreground" Value="#9A9A9A" />
+      <Setter Property="FontSize" Value="12" />
+    </Style>
+    <Style Selector="TextBlock.h1">
+      <Setter Property="FontSize" Value="22" />
+      <Setter Property="FontWeight" Value="SemiBold" />
+      <Setter Property="Margin" Value="0,0,0,12" />
+    </Style>
+    <Style Selector="TextBlock.h2">
+      <Setter Property="FontSize" Value="16" />
+      <Setter Property="FontWeight" Value="SemiBold" />
+      <Setter Property="Margin" Value="0,8,0,4" />
+    </Style>
+  </Window.Styles>
+
+  <DockPanel>
+    <!-- Status bar -->
+    <Border DockPanel.Dock="Bottom" Background="#1A1A1A" BorderBrush="#2E2E2E" BorderThickness="0,1,0,0" Padding="12,6">
+      <TextBlock x:Name="StatusBar" Classes="sub" Text="Ready" />
+    </Border>
+
+    <!-- Sidebar -->
+    <Border DockPanel.Dock="Left" Width="200" Background="#1C1C1C" BorderBrush="#2E2E2E" BorderThickness="0,0,1,0">
+      <DockPanel Margin="8,14">
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="10" Margin="8,0,0,18">
+          <Image Source="/Assets/icon.png" Width="30" Height="30" />
+          <TextBlock Text="WoW Tinker Box" FontWeight="SemiBold" FontSize="15" VerticalAlignment="Center" />
+        </StackPanel>
+        <TextBlock DockPanel.Dock="Bottom" x:Name="GameInfo" Classes="sub" TextWrapping="Wrap" Margin="8,0" />
+        <ListBox x:Name="Nav" Background="Transparent" SelectionChanged="Nav_SelectionChanged">
+          <ListBoxItem Content="Installed" />
+          <ListBoxItem Content="Install addon" />
+          <ListBoxItem Content="WTF backups" />
+          <ListBoxItem Content="Addon packs" />
+          <ListBoxItem Content="Settings" />
+        </ListBox>
+      </DockPanel>
+    </Border>
+
+    <Grid Margin="22,16">
+
+      <!-- Installed -->
+      <DockPanel x:Name="PageInstalled">
+        <TextBlock DockPanel.Dock="Top" Classes="h1" Text="Installed addons" />
+
+        <Border DockPanel.Dock="Top" x:Name="PatchBanner" IsVisible="False"
+                Background="#3A3222" CornerRadius="6" Padding="12" Margin="0,0,0,10">
+          <DockPanel>
+            <Button DockPanel.Dock="Right" Content="Dismiss" Click="DismissBanner_Click" Margin="10,0,0,0" />
+            <TextBlock x:Name="PatchText" TextWrapping="Wrap" Foreground="#F0D58A" VerticalAlignment="Center" />
+          </DockPanel>
+        </Border>
+
+        <DockPanel DockPanel.Dock="Top" Margin="0,0,0,10">
+          <Button DockPanel.Dock="Right" x:Name="UpdateAllBtn" Classes="gold" Content="Update all" Click="UpdateAll_Click" Margin="8,0,0,0" />
+          <Button DockPanel.Dock="Right" Content="Check for updates" Click="Check_Click" Margin="8,0,0,0" />
+          <Button DockPanel.Dock="Right" Content="Rescan" Click="Rescan_Click" Margin="8,0,0,0" />
+          <TextBox x:Name="Search" Watermark="Search installed addons" TextChanged="Search_TextChanged" />
+        </DockPanel>
+
+        <TextBlock DockPanel.Dock="Top" x:Name="FolderInfo" Classes="sub" Margin="0,0,0,6" TextTrimming="CharacterEllipsis" />
+
+        <ScrollViewer>
+          <ItemsControl x:Name="AddonList">
+            <ItemsControl.ItemTemplate>
+              <DataTemplate>
+                <Border Classes="card">
+                  <Grid ColumnDefinitions="Auto,*,Auto,Auto,Auto">
+                    <Border Width="34" Height="34" CornerRadius="6" Background="#3A3222" Margin="0,0,12,0">
+                      <TextBlock Text="{Binding Initial}" Foreground="#E0B84C" FontWeight="Bold"
+                                 HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                      <TextBlock Text="{Binding Title}" TextTrimming="CharacterEllipsis" />
+                      <TextBlock Classes="sub" Text="{Binding Subtitle}" TextTrimming="CharacterEllipsis" />
+                    </StackPanel>
+                    <TextBlock Grid.Column="2" Classes="sub" Text="{Binding VersionText}"
+                               VerticalAlignment="Center" Margin="12,0" />
+                    <Panel Grid.Column="3" Width="170" VerticalAlignment="Center">
+                      <Button Classes="gold" Content="Update" HorizontalAlignment="Right"
+                              IsVisible="{Binding HasUpdate}" Tag="{Binding}" Click="RowUpdate_Click" />
+                      <TextBlock Text="{Binding StatusLabel}" Foreground="{Binding StatusBrush}"
+                                 HorizontalAlignment="Right" VerticalAlignment="Center"
+                                 IsVisible="{Binding !HasUpdate}" />
+                    </Panel>
+                    <Button Grid.Column="4" Content="Remove" Margin="8,0,0,0" VerticalAlignment="Center"
+                            Tag="{Binding}" Click="RowRemove_Click" />
+                  </Grid>
+                </Border>
+              </DataTemplate>
+            </ItemsControl.ItemTemplate>
+          </ItemsControl>
+        </ScrollViewer>
+      </DockPanel>
+
+      <!-- Install -->
+      <ScrollViewer x:Name="PageInstall" IsVisible="False">
+        <StackPanel Spacing="10" MaxWidth="680" HorizontalAlignment="Left">
+          <TextBlock Classes="h1" Text="Install an addon" />
+          <TextBlock Classes="sub" TextWrapping="Wrap"
+                     Text="Paste a GitHub repository (owner/repo or its link) or a WoWInterface addon link. WoW Tinker Box downloads the latest version and installs it into your AddOns folder." />
+          <DockPanel>
+            <Button DockPanel.Dock="Right" Classes="gold" Content="Install" Click="Install_Click" Margin="8,0,0,0" />
+            <TextBox x:Name="RepoBox" Watermark="github.com/owner/repo or wowinterface.com/downloads/info12345" />
+          </DockPanel>
+          <TextBlock x:Name="InstallResult" TextWrapping="Wrap" />
+          <TextBlock Classes="h2" Text="Search WoWInterface" Margin="0,14,0,0" />
+          <DockPanel>
+            <Button DockPanel.Dock="Right" Content="Search" Click="WowiSearch_Click" Margin="8,0,0,0" />
+            <TextBox x:Name="WowiQuery" Watermark="Addon name, like Bagnon" />
+          </DockPanel>
+          <TextBlock x:Name="WowiInfo" Classes="sub" />
+          <ItemsControl x:Name="WowiResults">
+            <ItemsControl.ItemTemplate>
+              <DataTemplate>
+                <Border Classes="card">
+                  <Grid ColumnDefinitions="*,Auto,Auto">
+                    <StackPanel VerticalAlignment="Center">
+                      <TextBlock Text="{Binding Name}" TextTrimming="CharacterEllipsis" />
+                      <TextBlock Classes="sub" TextTrimming="CharacterEllipsis">
+                        <Run Text="{Binding Author}" /><Run Text=" · " /><Run Text="{Binding Downloads}" /><Run Text=" downloads" />
+                      </TextBlock>
+                    </StackPanel>
+                    <TextBlock Grid.Column="1" Classes="sub" Text="{Binding Version}" VerticalAlignment="Center" Margin="12,0" />
+                    <Button Grid.Column="2" Classes="gold" Content="Install" Tag="{Binding Id}" Click="WowiInstall_Click" />
+                  </Grid>
+                </Border>
+              </DataTemplate>
+            </ItemsControl.ItemTemplate>
+          </ItemsControl>
+          <Border Classes="card" Margin="0,12,0,0">
+            <StackPanel Spacing="4">
+              <TextBlock Text="CurseForge and Wago" FontWeight="SemiBold" />
+              <TextBlock Classes="sub" TextWrapping="Wrap"
+                         Text="Both need an API key. You can save your keys in Settings now; support for these sources is coming in a later version." />
+            </StackPanel>
+          </Border>
+        </StackPanel>
+      </ScrollViewer>
+
+      <!-- Backups -->
+      <DockPanel x:Name="PageBackups" IsVisible="False">
+        <TextBlock DockPanel.Dock="Top" Classes="h1" Text="WTF backups" />
+        <TextBlock DockPanel.Dock="Top" Classes="sub" TextWrapping="Wrap" Margin="0,0,0,10"
+                   Text="Your WTF folder holds all addon settings. A backup is made automatically before every update (turn this off in Settings). The newest 10 are kept. Close WoW before restoring." />
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="8" Margin="0,0,0,10">
+          <Button Classes="gold" Content="Back up now" Click="BackupNow_Click" />
+        </StackPanel>
+        <ScrollViewer>
+          <ItemsControl x:Name="BackupList">
+            <ItemsControl.ItemTemplate>
+              <DataTemplate>
+                <Border Classes="card">
+                  <Grid ColumnDefinitions="*,Auto,Auto">
+                    <TextBlock Text="{Binding Name}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                    <TextBlock Grid.Column="1" Classes="sub" Text="{Binding Info}" VerticalAlignment="Center" Margin="12,0" />
+                    <Button Grid.Column="2" Content="Restore" Tag="{Binding Path}" Click="Restore_Click" />
+                  </Grid>
+                </Border>
+              </DataTemplate>
+            </ItemsControl.ItemTemplate>
+          </ItemsControl>
+        </ScrollViewer>
+      </DockPanel>
+
+      <!-- Packs -->
+      <ScrollViewer x:Name="PagePacks" IsVisible="False">
+        <StackPanel Spacing="10" MaxWidth="680" HorizontalAlignment="Left">
+          <TextBlock Classes="h1" Text="Addon packs" />
+          <TextBlock Classes="h2" Text="Share your addons" />
+          <TextBlock Classes="sub" TextWrapping="Wrap"
+                     Text="Turn your installed addons into a code. Anyone with WoW Tinker Box can paste it to install the same set." />
+          <DockPanel>
+            <Button DockPanel.Dock="Right" Classes="gold" Content="Create pack code" Click="ExportPack_Click" Margin="8,0,0,0" />
+            <TextBox x:Name="PackName" Watermark="Pack name, like Frank's raid setup" />
+          </DockPanel>
+          <TextBox x:Name="PackCode" IsReadOnly="True" TextWrapping="Wrap" Height="90" />
+          <Button Content="Copy code" Click="CopyPack_Click" />
+
+          <TextBlock Classes="h2" Text="Install a pack" Margin="0,18,0,4" />
+          <TextBox x:Name="ImportCode" Watermark="Paste a pack code (starts with WTB1:)" TextWrapping="Wrap" Height="90" AcceptsReturn="True" />
+          <Button Classes="gold" Content="Install pack" Click="ImportPack_Click" />
+          <TextBlock x:Name="ImportResult" TextWrapping="Wrap" />
+        </StackPanel>
+      </ScrollViewer>
+
+      <!-- Settings -->
+      <ScrollViewer x:Name="PageSettings" IsVisible="False">
+        <StackPanel Spacing="8" MaxWidth="680" HorizontalAlignment="Left">
+          <TextBlock Classes="h1" Text="Settings" />
+          <TextBlock Classes="h2" Text="WoW Forever folder" />
+          <TextBlock Classes="sub" TextWrapping="Wrap"
+                     Text="The _forever_ folder inside your World of Warcraft folder. You can also pick the World of Warcraft folder itself." />
+          <DockPanel>
+            <Button DockPanel.Dock="Right" Content="Browse" Click="Browse_Click" Margin="8,0,0,0" />
+            <TextBox x:Name="GameBox" Watermark="C:\Program Files (x86)\World of Warcraft\_forever_" />
+          </DockPanel>
+
+          <TextBlock Classes="h2" Text="Backups" />
+          <CheckBox x:Name="AutoBackupBox" Content="Back up WTF settings before every update" />
+
+          <TextBlock Classes="h2" Text="GitHub token (optional)" />
+          <TextBlock Classes="sub" TextWrapping="Wrap"
+                     Text="GitHub allows 60 checks an hour without a token. A free token with no permissions raises this to 5,000." />
+          <TextBox x:Name="TokenBox" PasswordChar="•" Watermark="ghp_..." />
+
+          <TextBlock Classes="h2" Text="CurseForge API key (coming later)" />
+          <TextBox x:Name="CfBox" PasswordChar="•" />
+          <TextBlock Classes="h2" Text="Wago API key (coming later)" />
+          <TextBox x:Name="WagoBox" PasswordChar="•" />
+
+          <Button Classes="gold" Content="Save settings" Click="SaveSettings_Click" Margin="0,12,0,0" />
+          <TextBlock x:Name="SettingsResult" Classes="sub" />
+        </StackPanel>
+      </ScrollViewer>
+
+    </Grid>
+  </DockPanel>
+</Window>

@@ -1,0 +1,40 @@
+name: Build WoW Tinker Box
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Publish Windows exe
+        run: dotnet publish WoWTinkerBox.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o out/windows
+      - name: Publish Linux build
+        run: dotnet publish WoWTinkerBox.csproj -c Release -r linux-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o out/linux
+      - name: Zip
+        run: |
+          cd out/windows && zip -j ../../WoWTinkerBox-windows.zip WoWTinkerBox.exe && cd ../..
+          cd out/linux && tar -czf ../../WoWTinkerBox-linux.tar.gz WoWTinkerBox && cd ../..
+      - uses: actions/upload-artifact@v4
+        with:
+          name: WoWTinkerBox-windows
+          path: WoWTinkerBox-windows.zip
+      - name: Publish "latest" release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: WoW Tinker Box (latest build)
+          prerelease: false
+          make_latest: true
+          files: |
+            WoWTinkerBox-windows.zip
+            WoWTinkerBox-linux.tar.gz
