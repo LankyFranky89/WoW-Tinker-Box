@@ -217,7 +217,11 @@ public record Release(string Tag, string Url);
 public static class GitHub
 {
     static readonly HttpClient Http = CreateClient();
-    public static string? Token;
+    static string? _token;
+    /// <summary>Optional token from Settings. Setting it clears an earlier "rejected" state.</summary>
+    public static string? Token { get => _token; set { _token = value; TokenRejected = false; } }
+    /// <summary>True when GitHub answered 401 to the saved token; requests then go without it.</summary>
+    public static bool TokenRejected { get; private set; }
 
     static HttpClient CreateClient()
     {
@@ -241,16 +245,31 @@ public static class GitHub
         if (url.StartsWith("https://api.github.com"))
         {
             req.Headers.Accept.ParseAdd("application/vnd.github+json");
-            if (!string.IsNullOrWhiteSpace(Token))
+            if (!string.IsNullOrWhiteSpace(Token) && !TokenRejected)
                 req.Headers.Authorization = new AuthenticationHeaderValue("Bearer", Token.Trim());
         }
         return req;
     }
 
+    /// <summary>Sends a GET; if GitHub rejects the saved token (401), retries once without it.</summary>
+    static async Task<HttpResponseMessage> Send(string url, HttpCompletionOption option)
+    {
+        using (var req = Request(url))
+        {
+            var res = await Http.SendAsync(req, option).ConfigureAwait(false);
+            bool usedToken = req.Headers.Authorization != null;
+            if (res.StatusCode != System.Net.HttpStatusCode.Unauthorized || !usedToken) return res;
+            res.Dispose();
+        }
+        TokenRejected = true;
+        using var retry = Request(url);
+        return await Http.SendAsync(retry, option).ConfigureAwait(false);
+    }
+
     static async Task<JsonDocument?> GetJson(string url)
     {
-        using var req = Request(url);
-        using var res = await Http.SendAsync(req).ConfigureAwait(false);
+        var res = await Send(url, HttpCompletionOption.ResponseContentRead).ConfigureAwait(false);
+        using var _ = res;
         if (res.StatusCode == System.Net.HttpStatusCode.NotFound) return null;
         if (!res.IsSuccessStatusCode)
         {
@@ -297,9 +316,8 @@ public static class GitHub
     public static async Task<string> Download(string url)
     {
         var file = Path.Combine(Path.GetTempPath(), "fam-" + Guid.NewGuid().ToString("N") + ".zip");
-        using var req = Request(url);
-        using var res = await Http.SendAsync(req, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
-        res.EnsureSuccessStatusCode();
+        using var res = await Send(url, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+        if (!res.IsSuccessStatusCode) throw new Exception($"Download failed ({(int)res.StatusCode}).");
         await using var fs = File.Create(file);
         await res.Content.CopyToAsync(fs).ConfigureAwait(false);
         return file;

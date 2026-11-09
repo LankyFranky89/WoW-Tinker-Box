@@ -34,7 +34,8 @@ public partial class MainWindow : Window
 
     // ---------- helpers ----------
 
-    void Status(string text) => StatusBar.Text = text;
+    void Status(string text) => StatusBar.Text = text +
+        (GitHub.TokenRejected ? "  ·  GitHub rejected your token (it may be expired). Fix or clear it in Settings." : "");
 
     async Task Run(Func<Task> work)
     {
