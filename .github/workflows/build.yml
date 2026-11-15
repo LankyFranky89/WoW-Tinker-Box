@@ -3,6 +3,7 @@ name: Build WoW Tinker Box
 on:
   push:
     branches: [main]
+    paths-ignore: ['catalog/**', '.github/workflows/catalog.yml']
   workflow_dispatch:
 
 permissions:

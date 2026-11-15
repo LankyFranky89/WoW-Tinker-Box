@@ -30,6 +30,15 @@ public partial class MainWindow : Window
         Rescan();
         RefreshBackups();
         Opened += async (_, _) => await Startup();
+
+        // Keep checking while the app is open, so new versions arrive without a restart.
+        var timer = new Avalonia.Threading.DispatcherTimer { Interval = TimeSpan.FromMinutes(15) };
+        timer.Tick += async (_, _) =>
+        {
+            if (busy || string.IsNullOrEmpty(st.GamePath)) return;
+            await Run(async () => { await CheckUpdates(); await AutoUpdatePack(); });
+        };
+        timer.Start();
     }
 
     // ---------- helpers ----------
@@ -118,6 +127,7 @@ public partial class MainWindow : Window
             }
 
             await CheckUpdates();
+            await AutoUpdatePack();
 
             if (patchDay)
             {
@@ -134,6 +144,7 @@ public partial class MainWindow : Window
 
     async Task CheckUpdates()
     {
+        await RefreshPack();
         var repos = all.Where(a => a.Repo != null).Select(a => a.Repo!).Distinct(StringComparer.OrdinalIgnoreCase).ToList();
         if (repos.Count == 0) { Status("No GitHub or WoWInterface addons to check. Manual installs can't be checked."); return; }
 
@@ -148,6 +159,86 @@ public partial class MainWindow : Window
         int n = all.Where(a => a.HasUpdate).Select(a => a.Repo).Distinct().Count();
         Status($"Checked {repos.Count} source(s): {n} update(s) available" + (failed > 0 ? $", {failed} failed" : "") + ".");
     }
+
+    // ---------- Frank's Pack ----------
+
+    static bool InPack(string? repo) => repo != null && Catalog.Find(repo) != null;
+
+    async Task RefreshPack()
+    {
+        try
+        {
+            var cat = await Catalog.Refresh();
+            foreach (var a in cat.Addons) latest[a.Repo] = new Release(a.Tag, a.Url);
+        }
+        catch (Exception ex) { Status(ex.Message); }
+        ShowPack();
+    }
+
+    void ShowPack()
+    {
+        var cat = Catalog.Current;
+        if (cat == null) { PackInfo.Text = "Frank's Pack list isn't loaded yet."; return; }
+        foreach (var c in cat.Addons)
+        {
+            var mine = all.FirstOrDefault(a => string.Equals(a.Folder, c.Folder, StringComparison.OrdinalIgnoreCase));
+            c.State = mine == null ? "Not installed"
+                : !string.Equals(mine.Repo, c.Repo, StringComparison.OrdinalIgnoreCase) ? "Installed by hand · will be linked"
+                : mine.InstalledTag == c.Tag ? "✓ Up to date"
+                : $"Update: {mine.InstalledTag} → {c.Tag}";
+        }
+        PackList.ItemsSource = null;
+        PackList.ItemsSource = cat.Addons;
+        int todo = cat.Addons.Count(c => !c.State.StartsWith("✓"));
+        PackInfo.Text = $"{cat.Addons.Count} addons · {(todo == 0 ? "all up to date" : todo + " to install or update")}" +
+                        (DateTimeOffset.TryParse(cat.Updated, out var u) ? $" · list updated {u.LocalDateTime:g}" : "");
+        InstallPackBtn.Content = todo == 0 ? "Frank's Pack is up to date" : $"Install Frank's Pack ({todo})";
+    }
+
+    /// <summary>Repos from the pack that are missing, outdated, or installed by hand.</summary>
+    List<string> PackWork(bool includeMissing)
+    {
+        var cat = Catalog.Current;
+        if (cat == null) return new();
+        var work = new List<string>();
+        foreach (var c in cat.Addons)
+        {
+            var mine = all.FirstOrDefault(a => string.Equals(a.Folder, c.Folder, StringComparison.OrdinalIgnoreCase));
+            if (mine == null) { if (includeMissing) work.Add(c.Repo); }
+            else if (!string.Equals(mine.Repo, c.Repo, StringComparison.OrdinalIgnoreCase) || mine.InstalledTag != c.Tag)
+                work.Add(c.Repo);
+        }
+        return work;
+    }
+
+    /// <summary>Updates pack addons the user already has. Never installs new ones on its own.</summary>
+    async Task AutoUpdatePack()
+    {
+        if (!st.AutoUpdatePack) return;
+        var work = PackWork(includeMissing: false)
+            .Where(r => all.Any(a => string.Equals(a.Repo, r, StringComparison.OrdinalIgnoreCase))).ToList();
+        if (work.Count == 0) return;
+        await UpdateRepos(work);
+        ShowPack();
+        Status($"Frank's Pack: updated {work.Count} addon(s). Type /reload in game if WoW is running.");
+    }
+
+    async void InstallPack_Click(object? sender, RoutedEventArgs e)
+    {
+        if (!HasGameFolder()) return;
+        await Run(async () =>
+        {
+            await RefreshPack();
+            var work = PackWork(includeMissing: true);
+            await UpdateRepos(work);
+            ShowPack();
+            Status(work.Count == 0 ? "Frank's Pack is already up to date."
+                : $"Frank's Pack: installed or updated {work.Count} addon(s). Type /reload in game if WoW is running.");
+        });
+    }
+
+    async void RefreshPack_Click(object? sender, RoutedEventArgs e) =>
+        await Run(async () => { await RefreshPack(); ApplyLatest(); Status("Frank's Pack list refreshed."); });
 
     async Task UpdateRepos(IReadOnlyList<string> repos)
     {
@@ -173,6 +264,7 @@ public partial class MainWindow : Window
         for (int i = 0; i < pages.Length; i++)
             pages[i].IsVisible = i == Nav.SelectedIndex;
         if (Nav.SelectedIndex == 2) RefreshBackups();
+        if (Nav.SelectedIndex == 3) ShowPack();
     }
 
     // ---------- installed page ----------
@@ -436,6 +528,7 @@ public partial class MainWindow : Window
     {
         GameBox.Text = st.GamePath;
         AutoBackupBox.IsChecked = st.AutoBackup;
+        AutoPackBox.IsChecked = st.AutoUpdatePack;
         TokenBox.Text = st.GitHubToken;
         CfBox.Text = st.CurseForgeKey;
         WagoBox.Text = st.WagoKey;
@@ -464,6 +557,7 @@ public partial class MainWindow : Window
         st.GamePath = path;
         GameBox.Text = path;
         st.AutoBackup = AutoBackupBox.IsChecked == true;
+        st.AutoUpdatePack = AutoPackBox.IsChecked == true;
         st.GitHubToken = TokenBox.Text?.Trim() ?? "";
         st.CurseForgeKey = CfBox.Text?.Trim() ?? "";
         st.WagoKey = WagoBox.Text?.Trim() ?? "";

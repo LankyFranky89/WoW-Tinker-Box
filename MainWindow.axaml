@@ -201,7 +201,31 @@
       <ScrollViewer x:Name="PagePacks" IsVisible="False">
         <StackPanel Spacing="10" MaxWidth="680" HorizontalAlignment="Left">
           <TextBlock Classes="h1" Text="Addon packs" />
-          <TextBlock Classes="h2" Text="Share your addons" />
+
+          <TextBlock Classes="h2" Text="Frank's Pack" />
+          <TextBlock Classes="sub" TextWrapping="Wrap"
+                     Text="Frank's own addons. New versions show up here a few minutes after he publishes them, and addons you have are updated automatically." />
+          <DockPanel>
+            <Button DockPanel.Dock="Right" Content="Refresh" Click="RefreshPack_Click" Margin="8,0,0,0" />
+            <Button DockPanel.Dock="Left" x:Name="InstallPackBtn" Classes="gold" Content="Install Frank's Pack" Click="InstallPack_Click" />
+            <TextBlock x:Name="PackInfo" Classes="sub" VerticalAlignment="Center" Margin="10,0,0,0" TextWrapping="Wrap" />
+          </DockPanel>
+          <ItemsControl x:Name="PackList">
+            <ItemsControl.ItemTemplate>
+              <DataTemplate>
+                <Grid ColumnDefinitions="*,Auto,Auto" Margin="0,3">
+                  <StackPanel>
+                    <TextBlock Text="{Binding Title}" FontWeight="SemiBold" />
+                    <TextBlock Text="{Binding Notes}" Classes="sub" TextTrimming="CharacterEllipsis" />
+                  </StackPanel>
+                  <TextBlock Grid.Column="1" Text="{Binding TagText}" Classes="sub" VerticalAlignment="Center" Margin="12,0" />
+                  <TextBlock Grid.Column="2" Text="{Binding State}" VerticalAlignment="Center" MinWidth="170" />
+                </Grid>
+              </DataTemplate>
+            </ItemsControl.ItemTemplate>
+          </ItemsControl>
+
+          <TextBlock Classes="h2" Text="Share your addons" Margin="0,18,0,0" />
           <TextBlock Classes="sub" TextWrapping="Wrap"
                      Text="Turn your installed addons into a code. Anyone with WoW Tinker Box can paste it to install the same set." />
           <DockPanel>
@@ -232,6 +256,8 @@
 
           <TextBlock Classes="h2" Text="Backups" />
           <CheckBox x:Name="AutoBackupBox" Content="Back up WTF settings before every update" />
+          <TextBlock Classes="h2" Text="Frank's Pack" />
+          <CheckBox x:Name="AutoPackBox" Content="Update Frank's Pack addons automatically" />
 
           <TextBlock Classes="h2" Text="GitHub token (optional)" />
           <TextBlock Classes="sub" TextWrapping="Wrap"

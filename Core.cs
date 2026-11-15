@@ -21,6 +21,7 @@ public class AppState
 {
     public string GamePath { get; set; } = "";
     public bool AutoBackup { get; set; } = true;
+    public bool AutoUpdatePack { get; set; } = true;
     public string GitHubToken { get; set; } = "";
     public string CurseForgeKey { get; set; } = "";
     public string WagoKey { get; set; } = "";
@@ -394,11 +395,66 @@ public static class Sources
 {
     public static bool IsWowi(string key) => key.StartsWith("wowi:", StringComparison.OrdinalIgnoreCase);
 
-    public static Task<Release> Latest(string key) =>
-        IsWowi(key) ? WowInterface.Latest(key[5..]) : GitHub.Latest(key);
+    public static Task<Release> Latest(string key)
+    {
+        // Frank's Pack addons come from the catalog: one download, no GitHub rate limit.
+        var c = Catalog.Find(key);
+        if (c != null) return Task.FromResult(new Release(c.Tag, c.Url));
+        return IsWowi(key) ? WowInterface.Latest(key[5..]) : GitHub.Latest(key);
+    }
 
     public static string Describe(string key) =>
         IsWowi(key) ? "WoWInterface #" + key[5..] : "GitHub: " + key;
+}
+
+// ---------- Frank's Pack catalog ----------
+
+public class CatalogAddon
+{
+    [JsonPropertyName("repo")] public string Repo { get; set; } = "";
+    [JsonPropertyName("folder")] public string Folder { get; set; } = "";
+    [JsonPropertyName("title")] public string Title { get; set; } = "";
+    [JsonPropertyName("notes")] public string Notes { get; set; } = "";
+    [JsonPropertyName("tag")] public string Tag { get; set; } = "";
+    [JsonPropertyName("beta")] public bool Beta { get; set; }
+    [JsonPropertyName("url")] public string Url { get; set; } = "";
+
+    // Filled in by the app for the Frank's Pack list.
+    [JsonIgnore] public string State { get; set; } = "";
+    [JsonIgnore] public string TagText => Beta ? Tag + " (beta)" : Tag;
+}
+
+public class CatalogIndex
+{
+    [JsonPropertyName("name")] public string Name { get; set; } = "Frank's Pack";
+    [JsonPropertyName("updated")] public string Updated { get; set; } = "";
+    [JsonPropertyName("addons")] public List<CatalogAddon> Addons { get; set; } = new();
+}
+
+/// <summary>
+/// Frank's Pack: a list of addons and their newest versions, kept up to date by a GitHub Action
+/// in the WoW Tinker Box repo. One small file instead of one GitHub API call per addon.
+/// </summary>
+public static class Catalog
+{
+    public const string Url = "https://raw.githubusercontent.com/LankyFranky89/WoW-Tinker-Box/main/catalog/index.json";
+    static readonly HttpClient Http = new() { Timeout = TimeSpan.FromSeconds(30) };
+    public static CatalogIndex? Current { get; private set; }
+
+    public static async Task<CatalogIndex> Refresh()
+    {
+        using var req = new HttpRequestMessage(HttpMethod.Get, Url);
+        req.Headers.UserAgent.ParseAdd("WoWTinkerBox/1.0");
+        req.Headers.CacheControl = new CacheControlHeaderValue { NoCache = true };
+        using var res = await Http.SendAsync(req).ConfigureAwait(false);
+        if (!res.IsSuccessStatusCode) throw new Exception($"Frank's Pack list couldn't be loaded ({(int)res.StatusCode}).");
+        var json = await res.Content.ReadAsStringAsync().ConfigureAwait(false);
+        Current = JsonSerializer.Deserialize<CatalogIndex>(json) ?? new CatalogIndex();
+        return Current;
+    }
+
+    public static CatalogAddon? Find(string key) =>
+        Current?.Addons.FirstOrDefault(a => string.Equals(a.Repo, key, StringComparison.OrdinalIgnoreCase));
 }
 
 // ---------- Installing ----------
