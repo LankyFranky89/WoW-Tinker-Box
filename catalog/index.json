@@ -1,6 +1,6 @@
 {
   "name": "Frank's Pack",
-  "updated": "2026-11-15T08:29:37+00:00",
+  "updated": "2026-11-15T08:32:45+00:00",
   "addons": [
     {
       "repo": "LankyFranky89/FamiliarFaces",
@@ -50,16 +50,6 @@
       "tag": "v1.4.0",
       "beta": false,
       "url": "https://github.com/LankyFranky89/LootBeacon/releases/download/v1.4.0/LootBeacon-1.4.0-forever.zip",
-      "published": "2026-11-15T08:24:59Z"
-    },
-    {
-      "repo": "LankyFranky89/PopQuest",
-      "folder": "PopQuest",
-      "title": "PopQuest",
-      "notes": "Pops up a prompt when you loot an item that starts a quest.",
-      "tag": "v1.0.1",
-      "beta": false,
-      "url": "https://github.com/LankyFranky89/PopQuest/releases/download/v1.0.1/PopQuest-1.0.1-forever.zip",
       "published": "2026-11-15T08:24:59Z"
     },
     {
