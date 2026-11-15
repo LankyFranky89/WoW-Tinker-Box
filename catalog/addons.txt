@@ -6,4 +6,4 @@ LankyFranky89/Forget-Me-Not-e-Forever
 LankyFranky89/LootBeacon
 LankyFranky89/GlowceryList
 LankyFranky89/QuestLock-Forever
-LankyFranky89/QuestLogForever
+LankyFranky89/QuestLedgerForever
