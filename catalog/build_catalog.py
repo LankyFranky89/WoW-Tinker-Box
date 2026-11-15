@@ -48,9 +48,9 @@ def main():
             problems.append(f"{repo}: no release with a zip yet")
             continue
         asset = next(a for a in rel["assets"] if a["name"].lower().endswith(".zip"))
-        folder = re.sub(r"-[^-]+-forever\.zip$", "", asset["name"], flags=re.I)
-        if folder.lower().endswith(".zip"):
-            folder = folder[:-4]
+        name, ver = asset["name"], rel["tag_name"].lstrip("vV")
+        suffix = f"-{ver}-forever.zip"
+        folder = name[: -len(suffix)] if name.lower().endswith(suffix.lower()) else re.sub(r"\.zip$", "", name, flags=re.I)
         toc = toc_fields(repo, rel["tag_name"], folder)
         out.append({
             "repo": repo,
