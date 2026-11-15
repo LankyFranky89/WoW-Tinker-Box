@@ -1,6 +1,6 @@
 {
   "name": "Frank's Pack",
-  "updated": "2026-11-15T17:26:30+00:00",
+  "updated": "2026-11-15T20:35:41+00:00",
   "addons": [
     {
       "repo": "LankyFranky89/FamiliarFaces",
@@ -57,10 +57,10 @@
       "folder": "QuestLedgerForever",
       "title": "Quest Ledger Forever",
       "notes": "The classic separate quest log, with modern features: quest chains, 3D arrow, reward upgrades, party quests (QuestMates) and more. /ledger",
-      "tag": "v2.2.0",
+      "tag": "v2.3.0",
       "beta": false,
-      "url": "https://github.com/LankyFranky89/QuestLedgerForever/releases/download/v2.2.0/QuestLedgerForever-2.2.0-forever.zip",
-      "published": "2026-11-15T17:20:47Z"
+      "url": "https://github.com/LankyFranky89/QuestLedgerForever/releases/download/v2.3.0/QuestLedgerForever-2.3.0-forever.zip",
+      "published": "2026-11-15T19:46:41Z"
     },
     {
       "repo": "LankyFranky89/QuestLock-Forever",
