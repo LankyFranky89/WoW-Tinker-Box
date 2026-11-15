@@ -1,6 +1,6 @@
 {
   "name": "Frank's Pack",
-  "updated": "2026-11-15T17:22:05+00:00",
+  "updated": "2026-11-15T17:23:17+00:00",
   "addons": [
     {
       "repo": "LankyFranky89/FamiliarFaces",
@@ -67,10 +67,10 @@
       "folder": "QuestMates",
       "title": "QuestMates",
       "notes": "Shows your party members' quests on the world map in their own color, plus a list of who is on what. Also marks quest links in chat as done/in log. Everyone in the group needs QuestMates.",
-      "tag": "v1.12.1",
+      "tag": "v1.12.2",
       "beta": false,
-      "url": "https://github.com/LankyFranky89/QuestMates/releases/download/v1.12.1/QuestMates-1.12.1-forever.zip",
-      "published": "2026-11-15T17:11:08Z"
+      "url": "https://github.com/LankyFranky89/QuestMates/releases/download/v1.12.2/QuestMates-1.12.2-forever.zip",
+      "published": "2026-11-15T17:22:00Z"
     }
   ]
 }
