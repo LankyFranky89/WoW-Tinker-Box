@@ -1,6 +1,6 @@
 {
   "name": "Frank's Pack",
-  "updated": "2026-11-15T08:32:45+00:00",
+  "updated": "2026-11-15T17:14:39+00:00",
   "addons": [
     {
       "repo": "LankyFranky89/FamiliarFaces",
@@ -53,6 +53,16 @@
       "published": "2026-11-15T08:24:59Z"
     },
     {
+      "repo": "LankyFranky89/QuestLogForever",
+      "folder": "QuestLogForever",
+      "title": "Quest Ledger Forever",
+      "notes": "The classic separate quest log, with modern features: quest chains, 3D arrow, reward upgrades, party quests (QuestMates) and more. /ledger",
+      "tag": "v2.1.0",
+      "beta": false,
+      "url": "https://github.com/LankyFranky89/QuestLogForever/releases/download/v2.1.0/QuestLogForever-2.1.0-forever.zip",
+      "published": "2026-11-15T17:13:24Z"
+    },
+    {
       "repo": "LankyFranky89/QuestLock-Forever",
       "folder": "QuestLockForever",
       "title": "QuestLock Forever",
@@ -67,10 +77,10 @@
       "folder": "QuestMates",
       "title": "QuestMates",
       "notes": "Shows your party members' quests on the world map in their own color, plus a list of who is on what. Also marks quest links in chat as done/in log. Everyone in the group needs QuestMates.",
-      "tag": "v1.11.3",
+      "tag": "v1.12.1",
       "beta": false,
-      "url": "https://github.com/LankyFranky89/QuestMates/releases/download/v1.11.3/QuestMates-1.11.3-forever.zip",
-      "published": "2026-11-15T08:24:51Z"
+      "url": "https://github.com/LankyFranky89/QuestMates/releases/download/v1.12.1/QuestMates-1.12.1-forever.zip",
+      "published": "2026-11-15T17:11:08Z"
     }
   ]
 }
