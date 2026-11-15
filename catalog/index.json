@@ -1,0 +1,86 @@
+{
+  "name": "Frank's Pack",
+  "updated": "2026-11-15T08:25:13+00:00",
+  "addons": [
+    {
+      "repo": "LankyFranky89/FamiliarFaces",
+      "folder": "FamiliarFaces",
+      "title": "Familiar Faces",
+      "notes": "Remembers who you played with, which zones and which quests.",
+      "tag": "v1.0.0",
+      "beta": false,
+      "url": "https://github.com/LankyFranky89/FamiliarFaces/releases/download/v1.0.0/FamiliarFaces-1.0.0-forever.zip",
+      "published": "2026-11-15T08:24:54Z"
+    },
+    {
+      "repo": "LankyFranky89/FiresideForever",
+      "folder": "FiresideForever-1.3.0",
+      "title": "FiresideForever-1.3.0",
+      "notes": "",
+      "tag": "v1.3.0-beta",
+      "beta": true,
+      "url": "https://github.com/LankyFranky89/FiresideForever/releases/download/v1.3.0-beta/FiresideForever-1.3.0-beta-forever.zip",
+      "published": "2026-11-15T08:24:51Z"
+    },
+    {
+      "repo": "LankyFranky89/Forget-Me-Not-e-Forever",
+      "folder": "ForgetMeNot",
+      "title": "Forget-Me-Not(e) Forever",
+      "notes": "Your leveling helper: new spells, profession milestones and recipes, talents and class quests.",
+      "tag": "v0.21.8",
+      "beta": false,
+      "url": "https://github.com/LankyFranky89/Forget-Me-Not-e-Forever/releases/download/v0.21.8/ForgetMeNot-0.21.8-forever.zip",
+      "published": "2026-11-15T08:25:03Z"
+    },
+    {
+      "repo": "LankyFranky89/GlowceryList",
+      "folder": "GlowceryList",
+      "title": "Glowcery List",
+      "notes": "Shows a buy icon on vendor items you need for tracked recipes.",
+      "tag": "v1.0.0",
+      "beta": false,
+      "url": "https://github.com/LankyFranky89/GlowceryList/releases/download/v1.0.0/GlowceryList-1.0.0-forever.zip",
+      "published": "2026-11-15T08:25:04Z"
+    },
+    {
+      "repo": "LankyFranky89/LootBeacon",
+      "folder": "LootBeacon",
+      "title": "LootBeacon",
+      "notes": "Shows icons over lootable/interactable objects and manages minimap tracking. /beacon",
+      "tag": "v1.4.0",
+      "beta": false,
+      "url": "https://github.com/LankyFranky89/LootBeacon/releases/download/v1.4.0/LootBeacon-1.4.0-forever.zip",
+      "published": "2026-11-15T08:24:59Z"
+    },
+    {
+      "repo": "LankyFranky89/PopQuest",
+      "folder": "PopQuest",
+      "title": "PopQuest",
+      "notes": "Pops up a prompt when you loot an item that starts a quest.",
+      "tag": "v1.0.1",
+      "beta": false,
+      "url": "https://github.com/LankyFranky89/PopQuest/releases/download/v1.0.1/PopQuest-1.0.1-forever.zip",
+      "published": "2026-11-15T08:24:59Z"
+    },
+    {
+      "repo": "LankyFranky89/QuestLock-Forever",
+      "folder": "QuestLockForever",
+      "title": "QuestLock Forever",
+      "notes": "Protects quest items and profession tools from being sold or deleted by mistake.",
+      "tag": "v1.0.5",
+      "beta": false,
+      "url": "https://github.com/LankyFranky89/QuestLock-Forever/releases/download/v1.0.5/QuestLockForever-1.0.5-forever.zip",
+      "published": "2026-11-15T08:25:07Z"
+    },
+    {
+      "repo": "LankyFranky89/QuestMates",
+      "folder": "QuestMates",
+      "title": "QuestMates",
+      "notes": "Shows your party members' quests on the world map in their own color, plus a list of who is on what. Also marks quest links in chat as done/in log. Everyone in the group needs QuestMates.",
+      "tag": "v1.11.3",
+      "beta": false,
+      "url": "https://github.com/LankyFranky89/QuestMates/releases/download/v1.11.3/QuestMates-1.11.3-forever.zip",
+      "published": "2026-11-15T08:24:51Z"
+    }
+  ]
+}
