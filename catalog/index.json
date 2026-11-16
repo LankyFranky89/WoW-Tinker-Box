@@ -1,6 +1,6 @@
 {
   "name": "Frank's Pack",
-  "updated": "2026-11-15T20:35:41+00:00",
+  "updated": "2026-11-16T00:21:03+00:00",
   "addons": [
     {
       "repo": "LankyFranky89/FamiliarFaces",
@@ -57,20 +57,20 @@
       "folder": "QuestLedgerForever",
       "title": "Quest Ledger Forever",
       "notes": "The classic separate quest log, with modern features: quest chains, 3D arrow, reward upgrades, party quests (QuestMates) and more. /ledger",
-      "tag": "v2.3.0",
+      "tag": "v2.5.1",
       "beta": false,
-      "url": "https://github.com/LankyFranky89/QuestLedgerForever/releases/download/v2.3.0/QuestLedgerForever-2.3.0-forever.zip",
-      "published": "2026-11-15T19:46:41Z"
+      "url": "https://github.com/LankyFranky89/QuestLedgerForever/releases/download/v2.5.1/QuestLedgerForever-2.5.1-forever.zip",
+      "published": "2026-11-15T21:46:19Z"
     },
     {
       "repo": "LankyFranky89/QuestLock-Forever",
       "folder": "QuestLockForever",
       "title": "QuestLock Forever",
       "notes": "Protects quest items and profession tools from being sold or deleted by mistake.",
-      "tag": "v1.0.5",
+      "tag": "v1.0.6",
       "beta": false,
-      "url": "https://github.com/LankyFranky89/QuestLock-Forever/releases/download/v1.0.5/QuestLockForever-1.0.5-forever.zip",
-      "published": "2026-11-15T08:25:07Z"
+      "url": "https://github.com/LankyFranky89/QuestLock-Forever/releases/download/v1.0.6/QuestLockForever-1.0.6-forever.zip",
+      "published": "2026-11-15T22:03:30Z"
     },
     {
       "repo": "LankyFranky89/QuestMates",
