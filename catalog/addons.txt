@@ -7,3 +7,4 @@ LankyFranky89/LootBeacon
 LankyFranky89/GlowceryList
 LankyFranky89/QuestLock-Forever
 LankyFranky89/QuestLedgerForever
+LankyFranky89/TalentScout
