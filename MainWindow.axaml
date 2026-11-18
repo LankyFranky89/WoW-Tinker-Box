@@ -257,7 +257,7 @@
           <TextBlock Classes="h2" Text="Backups" />
           <CheckBox x:Name="AutoBackupBox" Content="Back up WTF settings before every update" />
           <TextBlock Classes="h2" Text="Frank's Pack" />
-          <CheckBox x:Name="AutoPackBox" Content="Update Frank's Pack addons automatically" />
+          <CheckBox x:Name="AutoPackBox" Content="Update Frank's Pack addons automatically while the app is open (at launch you are always asked first)" />
 
           <TextBlock Classes="h2" Text="GitHub token (optional)" />
           <TextBlock Classes="sub" TextWrapping="Wrap"

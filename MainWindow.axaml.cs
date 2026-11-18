@@ -127,7 +127,7 @@ public partial class MainWindow : Window
             }
 
             await CheckUpdates();
-            await AutoUpdatePack();
+            await AskForUpdates();
 
             if (patchDay)
             {
@@ -209,6 +209,52 @@ public partial class MainWindow : Window
                 work.Add(c.Repo);
         }
         return work;
+    }
+
+    /// <summary>At launch: shows the addons that have updates and asks whether to install them.</summary>
+    async Task AskForUpdates()
+    {
+        var items = all.Where(a => a.HasUpdate).GroupBy(a => a.Repo!, StringComparer.OrdinalIgnoreCase).ToList();
+        if (items.Count == 0) return;
+
+        var list = new StackPanel { Spacing = 4 };
+        foreach (var g in items)
+        {
+            var a = g.First();
+            list.Children.Add(new TextBlock { Text = $"{a.Title}   {a.VersionText}" });
+        }
+
+        bool yes = false;
+        var dlg = new Window
+        {
+            Title = "Updates available",
+            Width = 460,
+            SizeToContent = SizeToContent.Height,
+            CanResize = false,
+            WindowStartupLocation = WindowStartupLocation.CenterOwner,
+            Background = Background,
+        };
+        var update = new Button { Content = $"Update {(items.Count == 1 ? "it" : "all " + items.Count)}", Classes = { "gold" } };
+        var later = new Button { Content = "Not now", Margin = new Avalonia.Thickness(8, 0, 0, 0) };
+        update.Click += (_, _) => { yes = true; dlg.Close(); };
+        later.Click += (_, _) => dlg.Close();
+        dlg.Content = new StackPanel
+        {
+            Margin = new Avalonia.Thickness(20),
+            Spacing = 12,
+            Children =
+            {
+                new TextBlock { Text = items.Count == 1 ? "1 addon has an update:" : $"{items.Count} addons have updates:", FontWeight = Avalonia.Media.FontWeight.SemiBold, FontSize = 16 },
+                new ScrollViewer { MaxHeight = 320, Content = list },
+                new StackPanel { Orientation = Avalonia.Layout.Orientation.Horizontal, HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Right, Children = { update, later } },
+            },
+        };
+        await dlg.ShowDialog(this);
+
+        if (!yes) { Status($"{items.Count} update(s) waiting. Use Update all when you're ready."); return; }
+        await UpdateRepos(items.Select(g => g.Key).ToList());
+        ShowPack();
+        Status($"Updated {items.Count} addon(s). Type /reload in game if WoW is running.");
     }
 
     /// <summary>Updates pack addons the user already has. Never installs new ones on its own.</summary>
