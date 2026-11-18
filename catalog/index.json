@@ -1,6 +1,6 @@
 {
   "name": "Frank's Pack",
-  "updated": "2026-11-17T00:28:37+00:00",
+  "updated": "2026-11-18T08:34:24+00:00",
   "addons": [
     {
       "repo": "LankyFranky89/FamiliarFaces",
@@ -81,6 +81,16 @@
       "beta": false,
       "url": "https://github.com/LankyFranky89/QuestMates/releases/download/v1.13.0/QuestMates-1.13.0-forever.zip",
       "published": "2026-11-16T18:04:58Z"
+    },
+    {
+      "repo": "LankyFranky89/TalentScout",
+      "folder": "TalentScout",
+      "title": "Talent Scout",
+      "notes": "Talent presets for WoW Forever: left-click a spec to preview a Damage, Tank or Healer build, right-click for presets or to record your own. /tsc",
+      "tag": "v1.0.0",
+      "beta": false,
+      "url": "https://github.com/LankyFranky89/TalentScout/releases/download/v1.0.0/TalentScout-1.0.0-forever.zip",
+      "published": "2026-11-18T08:32:11Z"
     }
   ]
 }
