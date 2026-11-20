@@ -1,7 +1,25 @@
 {
   "name": "Frank's Pack",
-  "updated": "2026-11-20T22:08:13+00:00",
+  "updated": "2026-11-20T23:25:51+00:00",
   "addons": [
+    {
+      "repo": "LankyFranky89/AuraForge",
+      "folder": "AuraForge",
+      "title": "Aura Forge",
+      "notes": "Shows your buffs and debuffs on your action buttons. Made for WoW: Forever. Based on AdiButtonAuras by Adirelle.",
+      "tag": "v1.1.0",
+      "beta": false,
+      "url": "https://github.com/LankyFranky89/AuraForge/releases/download/v1.1.0/AuraForge-1.1.0-forever.zip"
+    },
+    {
+      "repo": "LankyFranky89/CopyCat",
+      "folder": "CopyCat",
+      "title": "CopyCat",
+      "notes": "Catches Lua errors and opens them pre-selected so you can Ctrl+C instantly. /cc",
+      "tag": "v1.1.0",
+      "beta": false,
+      "url": "https://github.com/LankyFranky89/CopyCat/releases/download/v1.1.0/CopyCat-1.1.0-forever.zip"
+    },
     {
       "repo": "LankyFranky89/FamiliarFaces",
       "folder": "FamiliarFaces",
@@ -16,9 +34,9 @@
       "folder": "FiresideForever",
       "title": "Fireside Forever",
       "notes": "Preview campfire buffs before you sit, and see which camp objects you can craft. /fs",
-      "tag": "v1.3.0-beta",
+      "tag": "v1.4.0-beta",
       "beta": true,
-      "url": "https://github.com/LankyFranky89/FiresideForever/releases/download/v1.3.0-beta/FiresideForever-1.3.0-beta-forever.zip"
+      "url": "https://github.com/LankyFranky89/FiresideForever/releases/download/v1.4.0-beta/FiresideForever-1.4.0-beta-forever.zip"
     },
     {
       "repo": "LankyFranky89/Forget-Me-Not-e-Forever",
@@ -57,6 +75,33 @@
       "url": "https://github.com/LankyFranky89/GlowceryList/releases/download/v1.0.0/GlowceryList-1.0.0-forever.zip"
     },
     {
+      "repo": "LankyFranky89/Huddle",
+      "folder": "Huddle",
+      "title": "Huddle",
+      "notes": "Compact friends list. Hover an online friend to expand details.",
+      "tag": "v1.1.0",
+      "beta": false,
+      "url": "https://github.com/LankyFranky89/Huddle/releases/download/v1.1.0/Huddle-1.1.0-forever.zip"
+    },
+    {
+      "repo": "LankyFranky89/Lingua",
+      "folder": "Lingua",
+      "title": "Lingua",
+      "notes": "Tags German and French chat and shows an English translation on hover. /lingua",
+      "tag": "v1.1",
+      "beta": false,
+      "url": "https://github.com/LankyFranky89/Lingua/releases/download/v1.1/Lingua-1.1-forever.zip"
+    },
+    {
+      "repo": "LankyFranky89/Parley",
+      "folder": "Parley",
+      "title": "Parley",
+      "notes": "Instant-messenger style whisper windows with history that survives /reload and logout.",
+      "tag": "v1.5.0",
+      "beta": false,
+      "url": "https://github.com/LankyFranky89/Parley/releases/download/v1.5.0/Parley-1.5.0-forever.zip"
+    },
+    {
       "repo": "LankyFranky89/Postmark",
       "folder": "Postmark",
       "title": "Postmark",
@@ -66,13 +111,22 @@
       "url": "https://github.com/LankyFranky89/Postmark/releases/download/v1.0.0/Postmark-1.0.0-forever.zip"
     },
     {
+      "repo": "LankyFranky89/Provisions",
+      "folder": "Provisions",
+      "title": "Provisions",
+      "notes": "Keeps macros pointed at your best water, food, potions, healthstone and bandage. Mage-made first.",
+      "tag": "v1.3",
+      "beta": false,
+      "url": "https://github.com/LankyFranky89/Provisions/releases/download/v1.3/Provisions-1.3-forever.zip"
+    },
+    {
       "repo": "LankyFranky89/QuestLedgerForever",
       "folder": "QuestLedgerForever",
       "title": "Quest Ledger Forever",
       "notes": "The classic separate quest log, with modern features: quest chains, 3D arrow, reward upgrades, quest levels at quest givers, quest-starter item popups, party quests (QuestMates) and more. /ledger",
-      "tag": "v1.0.0",
+      "tag": "v1.1.0",
       "beta": false,
-      "url": "https://codeload.github.com/LankyFranky89/QuestLedgerForever/zip/5a90e854e53258f6c7dd17c00dd2ed0f7f6e869a"
+      "url": "https://github.com/LankyFranky89/QuestLedgerForever/releases/download/v1.1.0/QuestLedgerForever-1.1.0-forever.zip"
     },
     {
       "repo": "LankyFranky89/QuestLock-Forever",
@@ -91,6 +145,42 @@
       "tag": "v1.13.0",
       "beta": false,
       "url": "https://github.com/LankyFranky89/QuestMates/releases/download/v1.13.0/QuestMates-1.13.0-forever.zip"
+    },
+    {
+      "repo": "LankyFranky89/RallyPoint",
+      "folder": "RallyPoint",
+      "title": "Rally Point",
+      "notes": "Filters for Blizzard's Looking For Group browser (role, class, level), members inline, match alerts, whisper helper. Includes Dungeon Dossier: dungeon quests in your log and to pick up (/dq) and map waypoints to quest givers and chain starts.",
+      "tag": "v1.6.0",
+      "beta": false,
+      "url": "https://github.com/LankyFranky89/RallyPoint/releases/download/v1.6.0/RallyPoint-1.6.0-forever.zip"
+    },
+    {
+      "repo": "LankyFranky89/Recap",
+      "folder": "Recap",
+      "title": "Recap",
+      "notes": "End-of-session summary card: time, XP, gold, quests, deaths, loot and a fun stat. /recap",
+      "tag": "v1.1.0",
+      "beta": false,
+      "url": "https://github.com/LankyFranky89/Recap/releases/download/v1.1.0/Recap-1.1.0-forever.zip"
+    },
+    {
+      "repo": "LankyFranky89/ReloadButton",
+      "folder": "ReloadButton",
+      "title": "Reload Button",
+      "notes": "Adds a Reload UI button to the Esc Game Menu.",
+      "tag": "v1.1",
+      "beta": false,
+      "url": "https://github.com/LankyFranky89/ReloadButton/releases/download/v1.1/ReloadButton-1.1-forever.zip"
+    },
+    {
+      "repo": "LankyFranky89/RollCall",
+      "folder": "RollCall",
+      "title": "RollCall",
+      "notes": "Tracks /roll results, shows a live leaderboard and remembers who won.",
+      "tag": "v1.1.0",
+      "beta": false,
+      "url": "https://github.com/LankyFranky89/RollCall/releases/download/v1.1.0/RollCall-1.1.0-forever.zip"
     },
     {
       "repo": "LankyFranky89/TalentScout",
