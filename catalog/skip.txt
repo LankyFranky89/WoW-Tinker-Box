@@ -5,3 +5,4 @@ PopQuest
 LevelTag
 DungeonDossier
 QuestStamp
+LootBeacon
