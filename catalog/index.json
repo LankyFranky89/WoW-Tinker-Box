@@ -1,6 +1,6 @@
 {
   "name": "Frank's Pack",
-  "updated": "2026-11-20T23:25:51+00:00",
+  "updated": "2026-11-20T23:33:35+00:00",
   "addons": [
     {
       "repo": "LankyFranky89/AuraForge",
@@ -25,9 +25,9 @@
       "folder": "FamiliarFaces",
       "title": "Familiar Faces",
       "notes": "Remembers who you played with, which zones and which quests.",
-      "tag": "v1.0.0",
+      "tag": "v1.1.0",
       "beta": false,
-      "url": "https://github.com/LankyFranky89/FamiliarFaces/releases/download/v1.0.0/FamiliarFaces-1.0.0-forever.zip"
+      "url": "https://github.com/LankyFranky89/FamiliarFaces/releases/download/v1.1.0/FamiliarFaces-1.1.0-forever.zip"
     },
     {
       "repo": "LankyFranky89/FiresideForever",
@@ -43,36 +43,36 @@
       "folder": "ForgetMeNot",
       "title": "Forget-Me-Not(e) Forever",
       "notes": "Your leveling helper: new spells, profession milestones and recipes, talents and class quests.",
-      "tag": "v0.21.8",
+      "tag": "v0.22.0",
       "beta": false,
-      "url": "https://github.com/LankyFranky89/Forget-Me-Not-e-Forever/releases/download/v0.21.8/ForgetMeNot-0.21.8-forever.zip"
+      "url": "https://github.com/LankyFranky89/Forget-Me-Not-e-Forever/releases/download/v0.22.0/ForgetMeNot-0.22.0-forever.zip"
     },
     {
       "repo": "LankyFranky89/Glimmer",
       "folder": "Glimmer",
       "title": "Glimmer",
       "notes": "Always shows the loot sparkle on quest items, and keeps it on after graphics changes.",
-      "tag": "v1.0.0",
+      "tag": "v1.1.0",
       "beta": false,
-      "url": "https://github.com/LankyFranky89/Glimmer/releases/download/v1.0.0/Glimmer-1.0.0-forever.zip"
+      "url": "https://github.com/LankyFranky89/Glimmer/releases/download/v1.1.0/Glimmer-1.1.0-forever.zip"
     },
     {
       "repo": "LankyFranky89/Globus",
       "folder": "Globus",
       "title": "Globus",
       "notes": "A clean, borderless world map: just the map and your quest tracking. Zoom in very close with the mouse wheel, drag to move, resize from the corner. /globus",
-      "tag": "v1.0.0",
+      "tag": "v1.1.0",
       "beta": false,
-      "url": "https://codeload.github.com/LankyFranky89/Globus/zip/c5c75770b88663a55d9980ce56996cc0155300bc"
+      "url": "https://codeload.github.com/LankyFranky89/Globus/zip/b6f41a0e95a08d411017a4c33d73bbc8b76e510b"
     },
     {
       "repo": "LankyFranky89/GlowceryList",
       "folder": "GlowceryList",
       "title": "Glowcery List",
       "notes": "Shows a buy icon on vendor items you need for tracked recipes.",
-      "tag": "v1.0.0",
+      "tag": "v1.1.0",
       "beta": false,
-      "url": "https://github.com/LankyFranky89/GlowceryList/releases/download/v1.0.0/GlowceryList-1.0.0-forever.zip"
+      "url": "https://github.com/LankyFranky89/GlowceryList/releases/download/v1.1.0/GlowceryList-1.1.0-forever.zip"
     },
     {
       "repo": "LankyFranky89/Huddle",
@@ -106,9 +106,9 @@
       "folder": "Postmark",
       "title": "Postmark",
       "notes": "Shows a pending mail icon with total gold incoming from auction house sales (1 hour mail delay).",
-      "tag": "v1.0.0",
+      "tag": "v1.1.0",
       "beta": false,
-      "url": "https://github.com/LankyFranky89/Postmark/releases/download/v1.0.0/Postmark-1.0.0-forever.zip"
+      "url": "https://github.com/LankyFranky89/Postmark/releases/download/v1.1.0/Postmark-1.1.0-forever.zip"
     },
     {
       "repo": "LankyFranky89/Provisions",
@@ -133,18 +133,18 @@
       "folder": "QuestLockForever",
       "title": "QuestLock Forever",
       "notes": "Protects quest items and profession tools from being sold or deleted by mistake.",
-      "tag": "v1.0.6",
+      "tag": "v1.1.0",
       "beta": false,
-      "url": "https://github.com/LankyFranky89/QuestLock-Forever/releases/download/v1.0.6/QuestLockForever-1.0.6-forever.zip"
+      "url": "https://github.com/LankyFranky89/QuestLock-Forever/releases/download/v1.1.0/QuestLockForever-1.1.0-forever.zip"
     },
     {
       "repo": "LankyFranky89/QuestMates",
       "folder": "QuestMates",
       "title": "QuestMates",
       "notes": "Shows your party members' quests on the world map in their own color, plus a list of who is on what. Also marks quest links in chat as done/in log. Everyone in the group needs QuestMates.",
-      "tag": "v1.13.0",
+      "tag": "v1.14.0",
       "beta": false,
-      "url": "https://github.com/LankyFranky89/QuestMates/releases/download/v1.13.0/QuestMates-1.13.0-forever.zip"
+      "url": "https://github.com/LankyFranky89/QuestMates/releases/download/v1.14.0/QuestMates-1.14.0-forever.zip"
     },
     {
       "repo": "LankyFranky89/RallyPoint",
@@ -183,13 +183,22 @@
       "url": "https://github.com/LankyFranky89/RollCall/releases/download/v1.1.0/RollCall-1.1.0-forever.zip"
     },
     {
+      "repo": "LankyFranky89/Scribe",
+      "folder": "Scribe",
+      "title": "Scribe",
+      "notes": "English spellcheck for chat, with WoW terms and acronyms.",
+      "tag": "v1.1.0",
+      "beta": false,
+      "url": "https://github.com/LankyFranky89/Scribe/releases/download/v1.1.0/Scribe-1.1.0-forever.zip"
+    },
+    {
       "repo": "LankyFranky89/TalentScout",
       "folder": "TalentScout",
       "title": "Talent Scout",
       "notes": "Talent presets for WoW Forever: left-click a spec to preview a Damage, Tank or Healer build, right-click for presets or to record your own. /tsc",
-      "tag": "v1.0.0",
+      "tag": "v1.1.0",
       "beta": false,
-      "url": "https://github.com/LankyFranky89/TalentScout/releases/download/v1.0.0/TalentScout-1.0.0-forever.zip"
+      "url": "https://github.com/LankyFranky89/TalentScout/releases/download/v1.1.0/TalentScout-1.1.0-forever.zip"
     }
   ],
   "removed": [
