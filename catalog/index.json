@@ -1,6 +1,6 @@
 {
   "name": "Frank's Pack",
-  "updated": "2026-11-20T22:04:36+00:00",
+  "updated": "2026-11-20T22:08:13+00:00",
   "addons": [
     {
       "repo": "LankyFranky89/FamiliarFaces",
@@ -30,6 +30,15 @@
       "url": "https://github.com/LankyFranky89/Forget-Me-Not-e-Forever/releases/download/v0.21.8/ForgetMeNot-0.21.8-forever.zip"
     },
     {
+      "repo": "LankyFranky89/Glimmer",
+      "folder": "Glimmer",
+      "title": "Glimmer",
+      "notes": "Always shows the loot sparkle on quest items, and keeps it on after graphics changes.",
+      "tag": "v1.0.0",
+      "beta": false,
+      "url": "https://github.com/LankyFranky89/Glimmer/releases/download/v1.0.0/Glimmer-1.0.0-forever.zip"
+    },
+    {
       "repo": "LankyFranky89/Globus",
       "folder": "Globus",
       "title": "Globus",
@@ -46,6 +55,15 @@
       "tag": "v1.0.0",
       "beta": false,
       "url": "https://github.com/LankyFranky89/GlowceryList/releases/download/v1.0.0/GlowceryList-1.0.0-forever.zip"
+    },
+    {
+      "repo": "LankyFranky89/Postmark",
+      "folder": "Postmark",
+      "title": "Postmark",
+      "notes": "Shows a pending mail icon with total gold incoming from auction house sales (1 hour mail delay).",
+      "tag": "v1.0.0",
+      "beta": false,
+      "url": "https://github.com/LankyFranky89/Postmark/releases/download/v1.0.0/Postmark-1.0.0-forever.zip"
     },
     {
       "repo": "LankyFranky89/QuestLedgerForever",
