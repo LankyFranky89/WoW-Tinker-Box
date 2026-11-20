@@ -1,6 +1,6 @@
 {
   "name": "Frank's Pack",
-  "updated": "2026-11-18T08:34:24+00:00",
+  "updated": "2026-11-20T21:28:05+00:00",
   "addons": [
     {
       "repo": "LankyFranky89/FamiliarFaces",
@@ -9,8 +9,7 @@
       "notes": "Remembers who you played with, which zones and which quests.",
       "tag": "v1.0.0",
       "beta": false,
-      "url": "https://github.com/LankyFranky89/FamiliarFaces/releases/download/v1.0.0/FamiliarFaces-1.0.0-forever.zip",
-      "published": "2026-11-15T08:24:54Z"
+      "url": "https://github.com/LankyFranky89/FamiliarFaces/releases/download/v1.0.0/FamiliarFaces-1.0.0-forever.zip"
     },
     {
       "repo": "LankyFranky89/FiresideForever",
@@ -19,8 +18,7 @@
       "notes": "Preview campfire buffs before you sit, and see which camp objects you can craft. /fs",
       "tag": "v1.3.0-beta",
       "beta": true,
-      "url": "https://github.com/LankyFranky89/FiresideForever/releases/download/v1.3.0-beta/FiresideForever-1.3.0-beta-forever.zip",
-      "published": "2026-11-15T08:24:51Z"
+      "url": "https://github.com/LankyFranky89/FiresideForever/releases/download/v1.3.0-beta/FiresideForever-1.3.0-beta-forever.zip"
     },
     {
       "repo": "LankyFranky89/Forget-Me-Not-e-Forever",
@@ -29,8 +27,16 @@
       "notes": "Your leveling helper: new spells, profession milestones and recipes, talents and class quests.",
       "tag": "v0.21.8",
       "beta": false,
-      "url": "https://github.com/LankyFranky89/Forget-Me-Not-e-Forever/releases/download/v0.21.8/ForgetMeNot-0.21.8-forever.zip",
-      "published": "2026-11-15T08:25:03Z"
+      "url": "https://github.com/LankyFranky89/Forget-Me-Not-e-Forever/releases/download/v0.21.8/ForgetMeNot-0.21.8-forever.zip"
+    },
+    {
+      "repo": "LankyFranky89/Globus",
+      "folder": "Globus",
+      "title": "Globus",
+      "notes": "A clean, borderless world map: just the map and your quest tracking. Zoom in very close with the mouse wheel, drag to move, resize from the corner. /globus",
+      "tag": "v1.0.0",
+      "beta": false,
+      "url": "https://codeload.github.com/LankyFranky89/Globus/zip/c5c75770b88663a55d9980ce56996cc0155300bc"
     },
     {
       "repo": "LankyFranky89/GlowceryList",
@@ -39,8 +45,7 @@
       "notes": "Shows a buy icon on vendor items you need for tracked recipes.",
       "tag": "v1.0.0",
       "beta": false,
-      "url": "https://github.com/LankyFranky89/GlowceryList/releases/download/v1.0.0/GlowceryList-1.0.0-forever.zip",
-      "published": "2026-11-15T08:25:04Z"
+      "url": "https://github.com/LankyFranky89/GlowceryList/releases/download/v1.0.0/GlowceryList-1.0.0-forever.zip"
     },
     {
       "repo": "LankyFranky89/LootBeacon",
@@ -49,18 +54,16 @@
       "notes": "Shows icons over lootable/interactable objects and manages minimap tracking. /beacon",
       "tag": "v1.4.0",
       "beta": false,
-      "url": "https://github.com/LankyFranky89/LootBeacon/releases/download/v1.4.0/LootBeacon-1.4.0-forever.zip",
-      "published": "2026-11-15T08:24:59Z"
+      "url": "https://github.com/LankyFranky89/LootBeacon/releases/download/v1.4.0/LootBeacon-1.4.0-forever.zip"
     },
     {
       "repo": "LankyFranky89/QuestLedgerForever",
       "folder": "QuestLedgerForever",
       "title": "Quest Ledger Forever",
       "notes": "The classic separate quest log, with modern features: quest chains, 3D arrow, reward upgrades, quest levels at quest givers, quest-starter item popups, party quests (QuestMates) and more. /ledger",
-      "tag": "v2.8.0",
+      "tag": "v1.0.0",
       "beta": false,
-      "url": "https://github.com/LankyFranky89/QuestLedgerForever/releases/download/v2.8.0/QuestLedgerForever-2.8.0-forever.zip",
-      "published": "2026-11-16T07:44:52Z"
+      "url": "https://codeload.github.com/LankyFranky89/QuestLedgerForever/zip/5a90e854e53258f6c7dd17c00dd2ed0f7f6e869a"
     },
     {
       "repo": "LankyFranky89/QuestLock-Forever",
@@ -69,8 +72,7 @@
       "notes": "Protects quest items and profession tools from being sold or deleted by mistake.",
       "tag": "v1.0.6",
       "beta": false,
-      "url": "https://github.com/LankyFranky89/QuestLock-Forever/releases/download/v1.0.6/QuestLockForever-1.0.6-forever.zip",
-      "published": "2026-11-15T22:03:30Z"
+      "url": "https://github.com/LankyFranky89/QuestLock-Forever/releases/download/v1.0.6/QuestLockForever-1.0.6-forever.zip"
     },
     {
       "repo": "LankyFranky89/QuestMates",
@@ -79,8 +81,7 @@
       "notes": "Shows your party members' quests on the world map in their own color, plus a list of who is on what. Also marks quest links in chat as done/in log. Everyone in the group needs QuestMates.",
       "tag": "v1.13.0",
       "beta": false,
-      "url": "https://github.com/LankyFranky89/QuestMates/releases/download/v1.13.0/QuestMates-1.13.0-forever.zip",
-      "published": "2026-11-16T18:04:58Z"
+      "url": "https://github.com/LankyFranky89/QuestMates/releases/download/v1.13.0/QuestMates-1.13.0-forever.zip"
     },
     {
       "repo": "LankyFranky89/TalentScout",
@@ -89,8 +90,13 @@
       "notes": "Talent presets for WoW Forever: left-click a spec to preview a Damage, Tank or Healer build, right-click for presets or to record your own. /tsc",
       "tag": "v1.0.0",
       "beta": false,
-      "url": "https://github.com/LankyFranky89/TalentScout/releases/download/v1.0.0/TalentScout-1.0.0-forever.zip",
-      "published": "2026-11-18T08:32:11Z"
+      "url": "https://github.com/LankyFranky89/TalentScout/releases/download/v1.0.0/TalentScout-1.0.0-forever.zip"
     }
+  ],
+  "removed": [
+    "LankyFranky89/dungeondossier",
+    "LankyFranky89/leveltag",
+    "LankyFranky89/PopQuest",
+    "LankyFranky89/queststamp"
   ]
 }
