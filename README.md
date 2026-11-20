@@ -9,7 +9,7 @@ A dark, Windows 11-style addon manager for **WoW Forever 1.60**. Runs on Windows
 - **Auto-backup WTF**: zips your WTF folder before every update. Keeps the newest 10, restore with two clicks (current settings are backed up first).
 - **Zip your addons**: tick addons (or all) and save them as one zip. "Install from zip" installs those zips, or any addon zip you downloaded yourself. GitHub and WoWInterface addons keep updating after import.
 - **Addon packs**: share your whole addon list as a `WTB1:` code. Your friend pastes it to install the same set.
-- **Frank's Pack**: one click installs all of Frank's addons. A GitHub Action refreshes `catalog/index.json` every 15 minutes from each addon's latest release, and the app updates pack addons automatically (at startup and every 15 minutes). To add an addon, put its repo in `catalog/addons.txt` and copy `.github/workflows/release.yml` from any of Frank's addon repos into it. To publish a new version, bump `## Version:` in the .toc and push.
+- **Frank's Pack**: one click installs all of Frank's addons. Every public repo of LankyFranky89 with a `.toc` file is in the pack automatically; a GitHub Action rebuilds `catalog/index.json` every 15 minutes. New addons install on friends' PCs by themselves, and addons listed in `catalog/skip.txt` are left out and removed from their PCs. To publish a new version, bump `## Version:` in the .toc and push.
 - **Patch-day checker**: notices when the game build changes (from `.build.info`) and tells you which addons have fixes or may break.
 - CurseForge and Wago keys can be saved in Settings; those sources are planned for a later version.
 

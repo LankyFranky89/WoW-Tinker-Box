@@ -1,0 +1,7 @@
+# Repos to keep OUT of Frank's Pack, one per line (just the repo name).
+# Every other public repo of LankyFranky89 with a .toc file is in the pack automatically.
+# Addons listed here are also removed from friends' PCs if they had them.
+PopQuest
+LevelTag
+DungeonDossier
+QuestStamp

@@ -211,32 +211,53 @@ public partial class MainWindow : Window
         return work;
     }
 
-    /// <summary>At launch: shows the addons that have updates and asks whether to install them.</summary>
+    bool JoinedPack => st.JoinedPack || all.Any(a => InPack(a.Repo));
+
+    /// <summary>Pack addons the user doesn't have yet (only once they've joined the pack).</summary>
+    List<CatalogAddon> NewPackAddons() =>
+        !JoinedPack || Catalog.Current == null ? new()
+        : Catalog.Current.Addons.Where(c => !all.Any(a => string.Equals(a.Folder, c.Folder, StringComparison.OrdinalIgnoreCase))).ToList();
+
+    /// <summary>Installed addons that Frank took out of the pack.</summary>
+    List<Addon> RetiredAddons() =>
+        Catalog.Current == null ? new()
+        : all.Where(a => a.Repo != null && Catalog.Current.Removed.Contains(a.Repo, StringComparer.OrdinalIgnoreCase)).ToList();
+
+    void RemoveRetired(List<Addon> retired)
+    {
+        foreach (var a in retired)
+            try { Installer.Remove(st, a.Folder); } catch { }
+        if (retired.Count > 0) Rescan();
+    }
+
+    /// <summary>At launch: lists updates, new pack addons and removed pack addons, and asks before doing anything.</summary>
     async Task AskForUpdates()
     {
-        var items = all.Where(a => a.HasUpdate).GroupBy(a => a.Repo!, StringComparer.OrdinalIgnoreCase).ToList();
-        if (items.Count == 0) return;
+        var updates = all.Where(a => a.HasUpdate && !(RetiredAddons().Contains(a)))
+                         .GroupBy(a => a.Repo!, StringComparer.OrdinalIgnoreCase).ToList();
+        var fresh = NewPackAddons();
+        var retired = RetiredAddons();
+        int total = updates.Count + fresh.Count + retired.Count;
+        if (total == 0) return;
 
         var list = new StackPanel { Spacing = 4 };
-        foreach (var g in items)
-        {
-            var a = g.First();
-            list.Children.Add(new TextBlock { Text = $"{a.Title}   {a.VersionText}" });
-        }
+        foreach (var g in updates) list.Children.Add(new TextBlock { Text = $"Update   {g.First().Title}   {g.First().VersionText}" });
+        foreach (var c in fresh) list.Children.Add(new TextBlock { Text = $"New        {c.Title}   {c.TagText}", Foreground = Avalonia.Media.Brush.Parse("#6CCB5F") });
+        foreach (var a in retired) list.Children.Add(new TextBlock { Text = $"Remove  {a.Title}   (taken out of Frank's Pack)", Foreground = Avalonia.Media.Brush.Parse("#FF99A4") });
 
         bool yes = false;
         var dlg = new Window
         {
-            Title = "Updates available",
-            Width = 460,
+            Title = "Addon changes",
+            Width = 480,
             SizeToContent = SizeToContent.Height,
             CanResize = false,
             WindowStartupLocation = WindowStartupLocation.CenterOwner,
             Background = Background,
         };
-        var update = new Button { Content = $"Update {(items.Count == 1 ? "it" : "all " + items.Count)}", Classes = { "gold" } };
+        var go = new Button { Content = total == 1 ? "Do it" : $"Do all {total}", Classes = { "gold" } };
         var later = new Button { Content = "Not now", Margin = new Avalonia.Thickness(8, 0, 0, 0) };
-        update.Click += (_, _) => { yes = true; dlg.Close(); };
+        go.Click += (_, _) => { yes = true; dlg.Close(); };
         later.Click += (_, _) => dlg.Close();
         dlg.Content = new StackPanel
         {
@@ -244,29 +265,33 @@ public partial class MainWindow : Window
             Spacing = 12,
             Children =
             {
-                new TextBlock { Text = items.Count == 1 ? "1 addon has an update:" : $"{items.Count} addons have updates:", FontWeight = Avalonia.Media.FontWeight.SemiBold, FontSize = 16 },
-                new ScrollViewer { MaxHeight = 320, Content = list },
-                new StackPanel { Orientation = Avalonia.Layout.Orientation.Horizontal, HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Right, Children = { update, later } },
+                new TextBlock { Text = total == 1 ? "1 addon change is waiting:" : $"{total} addon changes are waiting:", FontWeight = Avalonia.Media.FontWeight.SemiBold, FontSize = 16 },
+                new ScrollViewer { MaxHeight = 340, Content = list },
+                new StackPanel { Orientation = Avalonia.Layout.Orientation.Horizontal, HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Right, Children = { go, later } },
             },
         };
         await dlg.ShowDialog(this);
 
-        if (!yes) { Status($"{items.Count} update(s) waiting. Use Update all when you're ready."); return; }
-        await UpdateRepos(items.Select(g => g.Key).ToList());
+        if (!yes) { Status($"{total} change(s) waiting. Use Update all or Frank's Pack when you're ready."); return; }
+        RemoveRetired(retired);
+        await UpdateRepos(updates.Select(g => g.Key).Concat(fresh.Select(c => c.Repo)).ToList());
         ShowPack();
-        Status($"Updated {items.Count} addon(s). Type /reload in game if WoW is running.");
+        Status($"Done: {updates.Count} updated, {fresh.Count} new, {retired.Count} removed. Type /reload in game if WoW is running.");
     }
 
-    /// <summary>Updates pack addons the user already has. Never installs new ones on its own.</summary>
+    /// <summary>While the app is open: updates pack addons, installs new ones and removes retired ones.</summary>
     async Task AutoUpdatePack()
     {
         if (!st.AutoUpdatePack) return;
+        var retired = RetiredAddons();
         var work = PackWork(includeMissing: false)
-            .Where(r => all.Any(a => string.Equals(a.Repo, r, StringComparison.OrdinalIgnoreCase))).ToList();
-        if (work.Count == 0) return;
-        await UpdateRepos(work);
+            .Where(r => all.Any(a => string.Equals(a.Repo, r, StringComparison.OrdinalIgnoreCase)))
+            .Concat(NewPackAddons().Select(c => c.Repo)).ToList();
+        if (work.Count == 0 && retired.Count == 0) return;
+        RemoveRetired(retired);
+        if (work.Count > 0) await UpdateRepos(work);
         ShowPack();
-        Status($"Frank's Pack: updated {work.Count} addon(s). Type /reload in game if WoW is running.");
+        Status($"Frank's Pack: {work.Count} installed or updated, {retired.Count} removed. Type /reload in game if WoW is running.");
     }
 
     async void InstallPack_Click(object? sender, RoutedEventArgs e)
@@ -275,6 +300,8 @@ public partial class MainWindow : Window
         await Run(async () =>
         {
             await RefreshPack();
+            st.JoinedPack = true; st.Save();
+            RemoveRetired(RetiredAddons());
             var work = PackWork(includeMissing: true);
             await UpdateRepos(work);
             ShowPack();

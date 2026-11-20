@@ -22,6 +22,8 @@ public class AppState
     public string GamePath { get; set; } = "";
     public bool AutoBackup { get; set; } = true;
     public bool AutoUpdatePack { get; set; } = true;
+    /// <summary>Set once the user installs Frank's Pack; new pack addons then install by themselves.</summary>
+    public bool JoinedPack { get; set; }
     public string GitHubToken { get; set; } = "";
     public string CurseForgeKey { get; set; } = "";
     public string WagoKey { get; set; } = "";
@@ -429,6 +431,8 @@ public class CatalogIndex
     [JsonPropertyName("name")] public string Name { get; set; } = "Frank's Pack";
     [JsonPropertyName("updated")] public string Updated { get; set; } = "";
     [JsonPropertyName("addons")] public List<CatalogAddon> Addons { get; set; } = new();
+    /// <summary>Repos that left the pack; they are removed from friends' PCs.</summary>
+    [JsonPropertyName("removed")] public List<string> Removed { get; set; } = new();
 }
 
 /// <summary>

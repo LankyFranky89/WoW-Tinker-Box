@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ['catalog/addons.txt', 'catalog/build_catalog.py']
+    paths: ['catalog/skip.txt', 'catalog/build_catalog.py']
 
 permissions:
   contents: write
