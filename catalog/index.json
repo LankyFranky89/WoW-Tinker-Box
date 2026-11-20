@@ -1,6 +1,6 @@
 {
   "name": "Frank's Pack",
-  "updated": "2026-11-20T21:28:05+00:00",
+  "updated": "2026-11-20T22:04:36+00:00",
   "addons": [
     {
       "repo": "LankyFranky89/FamiliarFaces",
@@ -48,15 +48,6 @@
       "url": "https://github.com/LankyFranky89/GlowceryList/releases/download/v1.0.0/GlowceryList-1.0.0-forever.zip"
     },
     {
-      "repo": "LankyFranky89/LootBeacon",
-      "folder": "LootBeacon",
-      "title": "LootBeacon",
-      "notes": "Shows icons over lootable/interactable objects and manages minimap tracking. /beacon",
-      "tag": "v1.4.0",
-      "beta": false,
-      "url": "https://github.com/LankyFranky89/LootBeacon/releases/download/v1.4.0/LootBeacon-1.4.0-forever.zip"
-    },
-    {
       "repo": "LankyFranky89/QuestLedgerForever",
       "folder": "QuestLedgerForever",
       "title": "Quest Ledger Forever",
@@ -96,6 +87,7 @@
   "removed": [
     "LankyFranky89/dungeondossier",
     "LankyFranky89/leveltag",
+    "LankyFranky89/LootBeacon",
     "LankyFranky89/PopQuest",
     "LankyFranky89/queststamp"
   ]
