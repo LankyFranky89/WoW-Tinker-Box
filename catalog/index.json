@@ -1,6 +1,6 @@
 {
   "name": "Frank's Pack",
-  "updated": "2026-11-21T12:52:38+00:00",
+  "updated": "2026-11-21T19:46:38+00:00",
   "addons": [
     {
       "repo": "LankyFranky89/AuraForge",
@@ -115,9 +115,9 @@
       "folder": "Postmark",
       "title": "Postmark",
       "notes": "Shows a pending mail icon with total gold incoming from auction house sales (1 hour mail delay).",
-      "tag": "v1.1.0",
+      "tag": "v1.2.0",
       "beta": false,
-      "url": "https://github.com/LankyFranky89/Postmark/releases/download/v1.1.0/Postmark-1.1.0-forever.zip"
+      "url": "https://github.com/LankyFranky89/Postmark/releases/download/v1.2.0/Postmark-1.2.0-forever.zip"
     },
     {
       "repo": "LankyFranky89/Provisions",
