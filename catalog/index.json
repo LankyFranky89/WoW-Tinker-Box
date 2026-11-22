@@ -1,6 +1,6 @@
 {
   "name": "Frank's Pack",
-  "updated": "2026-11-21T23:58:56+00:00",
+  "updated": "2026-11-22T12:54:44+00:00",
   "addons": [
     {
       "repo": "LankyFranky89/AuraForge",
@@ -97,9 +97,9 @@
       "folder": "ObjectiveForever",
       "title": "Objective Forever",
       "notes": "Replaces the default quest tracker: your quests, tracked recipes with reagent counts and - with QuestMates - your party's quests.",
-      "tag": "v1.0.2",
+      "tag": "v1.0.3",
       "beta": false,
-      "url": "https://github.com/LankyFranky89/ObjectiveForever/releases/download/v1.0.2/ObjectiveForever-1.0.2-forever.zip"
+      "url": "https://github.com/LankyFranky89/ObjectiveForever/releases/download/v1.0.3/ObjectiveForever-1.0.3-forever.zip"
     },
     {
       "repo": "LankyFranky89/Parley",
@@ -133,9 +133,9 @@
       "folder": "QuestLedgerForever",
       "title": "Quest Ledger Forever",
       "notes": "The classic separate quest log, with modern features: quest chains, 3D arrow, reward upgrades, quest levels at quest givers, quest-starter item popups, party quests (QuestMates) and more. /ledger",
-      "tag": "v1.1.2",
+      "tag": "v1.1.3",
       "beta": false,
-      "url": "https://github.com/LankyFranky89/QuestLedgerForever/releases/download/v1.1.2/QuestLedgerForever-1.1.2-forever.zip"
+      "url": "https://github.com/LankyFranky89/QuestLedgerForever/releases/download/v1.1.3/QuestLedgerForever-1.1.3-forever.zip"
     },
     {
       "repo": "LankyFranky89/QuestLock-Forever",
@@ -151,9 +151,9 @@
       "folder": "QuestMates",
       "title": "QuestMates",
       "notes": "Shows your party members' quests on the world map in their own color, plus a list of who is on what. Also marks quest links in chat as done/in log. Everyone in the group needs QuestMates.",
-      "tag": "v1.14.4",
+      "tag": "v1.14.5",
       "beta": false,
-      "url": "https://github.com/LankyFranky89/QuestMates/releases/download/v1.14.4/QuestMates-1.14.4-forever.zip"
+      "url": "https://github.com/LankyFranky89/QuestMates/releases/download/v1.14.5/QuestMates-1.14.5-forever.zip"
     },
     {
       "repo": "LankyFranky89/RallyPoint",
