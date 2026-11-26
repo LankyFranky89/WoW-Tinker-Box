@@ -1,6 +1,6 @@
 {
   "name": "Frank's Pack",
-  "updated": "2026-11-24T15:18:44+00:00",
+  "updated": "2026-11-26T01:09:16+00:00",
   "addons": [
     {
       "repo": "LankyFranky89/AuraForge",
@@ -16,18 +16,18 @@
       "folder": "CopyCat",
       "title": "CopyCat",
       "notes": "Catches Lua errors and opens them pre-selected so you can Ctrl+C instantly. /cc",
-      "tag": "v1.1.0",
+      "tag": "v1.1.1",
       "beta": false,
-      "url": "https://github.com/LankyFranky89/CopyCat/releases/download/v1.1.0/CopyCat-1.1.0-forever.zip"
+      "url": "https://github.com/LankyFranky89/CopyCat/releases/download/v1.1.1/CopyCat-1.1.1-forever.zip"
     },
     {
       "repo": "LankyFranky89/FamiliarFaces",
       "folder": "FamiliarFaces",
       "title": "Familiar Faces",
       "notes": "Remembers who you played with, which zones and which quests.",
-      "tag": "v1.1.0",
+      "tag": "v1.1.2",
       "beta": false,
-      "url": "https://github.com/LankyFranky89/FamiliarFaces/releases/download/v1.1.0/FamiliarFaces-1.1.0-forever.zip"
+      "url": "https://github.com/LankyFranky89/FamiliarFaces/releases/download/v1.1.2/FamiliarFaces-1.1.2-forever.zip"
     },
     {
       "repo": "LankyFranky89/FiresideForever",
@@ -88,9 +88,9 @@
       "folder": "Lingua",
       "title": "Lingua",
       "notes": "Tags German and French chat and shows an English translation on hover. /lingua",
-      "tag": "v1.1",
+      "tag": "v1.1.2",
       "beta": false,
-      "url": "https://github.com/LankyFranky89/Lingua/releases/download/v1.1/Lingua-1.1-forever.zip"
+      "url": "https://github.com/LankyFranky89/Lingua/releases/download/v1.1.2/Lingua-1.1.2-forever.zip"
     },
     {
       "repo": "LankyFranky89/ObjectiveForever",
@@ -106,18 +106,18 @@
       "folder": "Parley",
       "title": "Parley",
       "notes": "Instant-messenger style whisper windows with history that survives /reload and logout.",
-      "tag": "v1.5.0",
+      "tag": "v1.5.2",
       "beta": false,
-      "url": "https://github.com/LankyFranky89/Parley/releases/download/v1.5.0/Parley-1.5.0-forever.zip"
+      "url": "https://github.com/LankyFranky89/Parley/releases/download/v1.5.2/Parley-1.5.2-forever.zip"
     },
     {
       "repo": "LankyFranky89/Postmark",
       "folder": "Postmark",
       "title": "Postmark",
       "notes": "Shows a pending mail icon with total gold incoming from auction house sales (1 hour mail delay).",
-      "tag": "v1.2.0",
+      "tag": "v1.2.2",
       "beta": false,
-      "url": "https://github.com/LankyFranky89/Postmark/releases/download/v1.2.0/Postmark-1.2.0-forever.zip"
+      "url": "https://github.com/LankyFranky89/Postmark/releases/download/v1.2.2/Postmark-1.2.2-forever.zip"
     },
     {
       "repo": "LankyFranky89/Provisions",
@@ -151,27 +151,27 @@
       "folder": "QuestMates",
       "title": "QuestMates",
       "notes": "Shows your party members' quests on the world map in their own color, plus a list of who is on what. Also marks quest links in chat as done/in log. Everyone in the group needs QuestMates.",
-      "tag": "v1.14.5",
+      "tag": "v1.14.7",
       "beta": false,
-      "url": "https://github.com/LankyFranky89/QuestMates/releases/download/v1.14.5/QuestMates-1.14.5-forever.zip"
+      "url": "https://github.com/LankyFranky89/QuestMates/releases/download/v1.14.7/QuestMates-1.14.7-forever.zip"
     },
     {
       "repo": "LankyFranky89/RallyPoint",
       "folder": "RallyPoint",
       "title": "Rally Point",
       "notes": "Filters for Blizzard's Looking For Group browser (role, class, level), members inline, match alerts, whisper helper. Includes Dungeon Dossier: dungeon quests in your log and to pick up (/dq) and map waypoints to quest givers and chain starts.",
-      "tag": "v1.6.0",
+      "tag": "v1.7.2",
       "beta": false,
-      "url": "https://github.com/LankyFranky89/RallyPoint/releases/download/v1.6.0/RallyPoint-1.6.0-forever.zip"
+      "url": "https://github.com/LankyFranky89/RallyPoint/releases/download/v1.7.2/RallyPoint-1.7.2-forever.zip"
     },
     {
       "repo": "LankyFranky89/Recap",
       "folder": "Recap",
       "title": "Recap",
       "notes": "End-of-session summary card: time, XP, gold, quests, deaths, loot and a fun stat. /recap",
-      "tag": "v1.1.0",
+      "tag": "v1.1.2",
       "beta": false,
-      "url": "https://github.com/LankyFranky89/Recap/releases/download/v1.1.0/Recap-1.1.0-forever.zip"
+      "url": "https://github.com/LankyFranky89/Recap/releases/download/v1.1.2/Recap-1.1.2-forever.zip"
     },
     {
       "repo": "LankyFranky89/ReloadButton",
@@ -187,9 +187,9 @@
       "folder": "RollCall",
       "title": "RollCall",
       "notes": "Tracks /roll results, shows a live leaderboard and remembers who won.",
-      "tag": "v1.1.0",
+      "tag": "v1.1.2",
       "beta": false,
-      "url": "https://github.com/LankyFranky89/RollCall/releases/download/v1.1.0/RollCall-1.1.0-forever.zip"
+      "url": "https://github.com/LankyFranky89/RollCall/releases/download/v1.1.2/RollCall-1.1.2-forever.zip"
     },
     {
       "repo": "LankyFranky89/Scribe",
