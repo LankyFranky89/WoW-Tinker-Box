@@ -6,3 +6,4 @@ DungeonDossier
 QuestStamp
 LootBeacon
 PopQuest
+Huddle

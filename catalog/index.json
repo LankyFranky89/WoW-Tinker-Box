@@ -75,15 +75,6 @@
       "url": "https://github.com/LankyFranky89/GlowceryList/releases/download/v1.1.0/GlowceryList-1.1.0-forever.zip"
     },
     {
-      "repo": "LankyFranky89/Huddle",
-      "folder": "Huddle",
-      "title": "Huddle",
-      "notes": "Compact friends list. Hover an online friend to expand details.",
-      "tag": "v1.1.0",
-      "beta": false,
-      "url": "https://github.com/LankyFranky89/Huddle/releases/download/v1.1.0/Huddle-1.1.0-forever.zip"
-    },
-    {
       "repo": "LankyFranky89/Lingua",
       "folder": "Lingua",
       "title": "Lingua",
@@ -215,6 +206,7 @@
     "LankyFranky89/leveltag",
     "LankyFranky89/lootbeacon",
     "LankyFranky89/PopQuest",
-    "LankyFranky89/queststamp"
+    "LankyFranky89/queststamp",
+    "LankyFranky89/Huddle"
   ]
 }
