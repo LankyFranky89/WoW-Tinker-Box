@@ -1,6 +1,6 @@
 {
   "name": "Frank's Pack",
-  "updated": "2026-11-26T01:09:16+00:00",
+  "updated": "2026-11-27T19:43:03+00:00",
   "addons": [
     {
       "repo": "LankyFranky89/AuraForge",
@@ -61,9 +61,9 @@
       "folder": "Globus",
       "title": "Globus",
       "notes": "A clean, borderless world map: just the map and your quest tracking. Zoom in very close with the mouse wheel, drag to move, resize from the corner. /globus",
-      "tag": "v1.1.0",
+      "tag": "v1.1.1",
       "beta": false,
-      "url": "https://codeload.github.com/LankyFranky89/Globus/zip/b6f41a0e95a08d411017a4c33d73bbc8b76e510b"
+      "url": "https://codeload.github.com/LankyFranky89/Globus/zip/5fca53905b034b8f8799351e61cf7168ae154626"
     },
     {
       "repo": "LankyFranky89/GlowceryList",
@@ -151,9 +151,9 @@
       "folder": "QuestMates",
       "title": "QuestMates",
       "notes": "Shows your party members' quests on the world map in their own color, plus a list of who is on what. Also marks quest links in chat as done/in log. Everyone in the group needs QuestMates.",
-      "tag": "v1.14.7",
+      "tag": "v1.14.8",
       "beta": false,
-      "url": "https://github.com/LankyFranky89/QuestMates/releases/download/v1.14.7/QuestMates-1.14.7-forever.zip"
+      "url": "https://github.com/LankyFranky89/QuestMates/releases/download/v1.14.8/QuestMates-1.14.8-forever.zip"
     },
     {
       "repo": "LankyFranky89/RallyPoint",
