@@ -1,6 +1,6 @@
 {
   "name": "Frank's Pack",
-  "updated": "2026-11-27T23:20:25+00:00",
+  "updated": "2026-11-28T10:17:45+00:00",
   "addons": [
     {
       "repo": "LankyFranky89/AuraForge",
@@ -43,9 +43,9 @@
       "folder": "ForgetMeNot",
       "title": "Forget-Me-Not(e) Forever",
       "notes": "Your leveling helper: new spells, profession milestones and recipes, and class quests.",
-      "tag": "v0.23.0",
+      "tag": "v0.23.1",
       "beta": false,
-      "url": "https://github.com/LankyFranky89/Forget-Me-Not-e-Forever/releases/download/v0.23.0/ForgetMeNot-0.23.0-forever.zip"
+      "url": "https://github.com/LankyFranky89/Forget-Me-Not-e-Forever/releases/download/v0.23.1/ForgetMeNot-0.23.1-forever.zip"
     },
     {
       "repo": "LankyFranky89/Glimmer",
